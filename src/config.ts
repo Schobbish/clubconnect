@@ -4,7 +4,7 @@ export const config = {
    *
    * Default: false.
    */
-  alwaysUseMsw: false,
+  alwaysUseMsw: true,
   /**
    * Set to true to use the origin specified by externalApiOrigin
    * for API requests instead of MSW (only affects dev builds
