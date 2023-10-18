@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_template=self.webpackChunkreact_template||[]).push([[978],{3978:function(e,t,r){r.r(t),r.d(t,{worker:function(){return c}});var n=r(8509),u=n.rest.get("/clubconnect/api/hello_world",(function(e,t,r){return t(r.status(200),r.json("hello,\nworld!"))})),c=(0,n.setupWorker)(u)}}]);
+//# sourceMappingURL=978.fbfd0f8f.chunk.js.map
