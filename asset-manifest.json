@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/clubconnect/static/css/main.f42f1d04.css",
-    "main.js": "/clubconnect/static/js/main.48a81864.js",
+    "main.js": "/clubconnect/static/js/main.85bc2715.js",
     "static/js/978.fbfd0f8f.chunk.js": "/clubconnect/static/js/978.fbfd0f8f.chunk.js",
     "static/js/787.fa3c4679.chunk.js": "/clubconnect/static/js/787.fa3c4679.chunk.js",
     "static/js/509.23e0dc36.chunk.js": "/clubconnect/static/js/509.23e0dc36.chunk.js",
     "index.html": "/clubconnect/index.html",
     "main.f42f1d04.css.map": "/clubconnect/static/css/main.f42f1d04.css.map",
-    "main.48a81864.js.map": "/clubconnect/static/js/main.48a81864.js.map",
+    "main.85bc2715.js.map": "/clubconnect/static/js/main.85bc2715.js.map",
     "978.fbfd0f8f.chunk.js.map": "/clubconnect/static/js/978.fbfd0f8f.chunk.js.map",
     "787.fa3c4679.chunk.js.map": "/clubconnect/static/js/787.fa3c4679.chunk.js.map",
     "509.23e0dc36.chunk.js.map": "/clubconnect/static/js/509.23e0dc36.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f42f1d04.css",
-    "static/js/main.48a81864.js"
+    "static/js/main.85bc2715.js"
   ]
 }
