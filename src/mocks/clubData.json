@@ -1,0 +1,22 @@
+{
+    "Filipino Student Association":
+    {
+        "acronym" : "FSA",
+        "president" : "Bob",
+        "description" : ""
+    },
+
+    "Vietnamese Student Association":
+    {
+        "acronym" : "VSA",
+        "president" : "Kevin Nguyen",
+        "description" : ""
+    },
+
+    "Association for Computing Machinery":
+    {
+        "acronym" : "ACM",
+        "president" : "Jocelyn Heckenkamp",
+        "description" : ""
+    }
+}
