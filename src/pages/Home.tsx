@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { apiAxios } from "../util/api";
+import { useEffect, useState } from "react";
 import { DebugTable } from "../components/DebugTable";
+import { apiAxios } from "../util/api";
 
 export function Home() {
   const [message, setMessage] = useState("");
