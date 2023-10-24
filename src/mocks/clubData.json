@@ -1,7 +1,7 @@
 {
   "Filipino Student Association": {
     "acronym": "FSA",
-    "president": "Bob",
+    "president": "Sabrina Uy-Tesy",
     "description": ""
   },
 
@@ -14,6 +14,12 @@
   "Association for Computing Machinery": {
     "acronym": "ACM",
     "president": "Jocelyn Heckenkamp",
+    "description": ""
+  },
+
+  "Society of Asian Scientists and Engineers": {
+    "acronym": "SASE",
+    "president": "Shreya TK",
     "description": ""
   }
 }
