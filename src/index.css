@@ -1,6 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Roboto+Condensed:wght@700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-orange-200;
+  }
+}
 
 @layer components {
   /* component-specific styles usually go here */

@@ -1,21 +1,43 @@
 import { useEffect, useState } from "react";
-import { DebugTable } from "../components/DebugTable";
+import { ClubCard } from "../components/ClubCard";
+import { NavBar } from "../components/NavBar";
 import { apiAxios } from "../util/api";
 
+export interface ClubData {
+  [name: string]: {
+    acronym: string;
+    president: string;
+    description: string;
+  };
+}
+
 export function Home() {
-  const [message, setMessage] = useState("");
+  const [clubData, setClubData] = useState<ClubData>({});
 
   useEffect(() => {
     apiAxios
-      .get("/api/hello_world")
-      .then((res) => setMessage(res.data))
-      .catch(() => setMessage("epic api fail!!"));
+      .get("/api/clubs")
+      .then((res) => {
+        console.log(Object.keys(res.data));
+        console.log(Object.keys(res.data)[1]);
+        setClubData(res.data);
+      })
+      .catch(() => {
+        console.error("failed to get club data");
+      });
   }, []);
 
   return (
-    <div className="home flex flex-col justify-center items-center min-h-screen text-center text-white bg-black">
-      <h1 className="text-6xl whitespace-pre-wrap">{message}</h1>
-      <DebugTable variables={{ message }} />
+    <div className="home">
+      <NavBar />
+      <div className="mx-auto max-w-5xl">
+        <h1>Top Clubs</h1>
+        <div className="cards-container flex flex-wrap gap-5 pt-5">
+          {Object.keys(clubData).map((club) => (
+            <ClubCard clubName={club} key={club} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
