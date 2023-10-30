@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/clubconnect/static/css/main.1d296442.css",
-    "main.js": "/clubconnect/static/js/main.5915e8bf.js",
+    "main.css": "/clubconnect/static/css/main.4b03cbc9.css",
+    "main.js": "/clubconnect/static/js/main.b7514e20.js",
     "static/js/176.f3fc8ba6.chunk.js": "/clubconnect/static/js/176.f3fc8ba6.chunk.js",
     "static/js/787.fa3c4679.chunk.js": "/clubconnect/static/js/787.fa3c4679.chunk.js",
     "static/js/509.40644e67.chunk.js": "/clubconnect/static/js/509.40644e67.chunk.js",
     "static/media/logo.png": "/clubconnect/static/media/logo.fbdee223f1540538c99b.png",
     "static/media/search.svg": "/clubconnect/static/media/search.56e5e2e432edcbd5f466e5da73e19c0a.svg",
     "index.html": "/clubconnect/index.html",
-    "main.1d296442.css.map": "/clubconnect/static/css/main.1d296442.css.map",
-    "main.5915e8bf.js.map": "/clubconnect/static/js/main.5915e8bf.js.map",
+    "main.4b03cbc9.css.map": "/clubconnect/static/css/main.4b03cbc9.css.map",
+    "main.b7514e20.js.map": "/clubconnect/static/js/main.b7514e20.js.map",
     "176.f3fc8ba6.chunk.js.map": "/clubconnect/static/js/176.f3fc8ba6.chunk.js.map",
     "787.fa3c4679.chunk.js.map": "/clubconnect/static/js/787.fa3c4679.chunk.js.map",
     "509.40644e67.chunk.js.map": "/clubconnect/static/js/509.40644e67.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1d296442.css",
-    "static/js/main.5915e8bf.js"
+    "static/css/main.4b03cbc9.css",
+    "static/js/main.b7514e20.js"
   ]
 }
