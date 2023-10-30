@@ -3,27 +3,27 @@
     "acronym": "FSA",
     "president": "Sabrina Uy-Tesy",
     "description": "Filipino Club",
-    "logo": "../clubconnect/public/fsa_logo.jpg"
+    "logo": "./images/fsa_logo.jpg"
   },
 
   "Vietnamese Student Association": {
     "acronym": "VSA",
-    "president": "Kevin Nguyen",
+    "president": "Danny Tran",
     "description": "",
-    "logo": ""
+    "logo": null
   },
 
   "Association for Computing Machinery": {
     "acronym": "ACM",
     "president": "Jocelyn Heckenkamp",
     "description": "",
-    "logo": ""
+    "logo": "./images/acm_logo.jpg"
   },
 
   "Society of Asian Scientists and Engineers": {
     "acronym": "SASE",
     "president": "Shreya TK",
     "description": "",
-    "logo": ""
+    "logo": "./images/SASE_UTD_logo.png"
   }
 }
