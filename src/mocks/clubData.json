@@ -2,24 +2,28 @@
   "Filipino Student Association": {
     "acronym": "FSA",
     "president": "Sabrina Uy-Tesy",
-    "description": ""
+    "description": "",
+    "logo": ""
   },
 
   "Vietnamese Student Association": {
     "acronym": "VSA",
     "president": "Kevin Nguyen",
-    "description": ""
+    "description": "",
+    "logo": ""
   },
 
   "Association for Computing Machinery": {
     "acronym": "ACM",
     "president": "Jocelyn Heckenkamp",
-    "description": ""
+    "description": "",
+    "logo": ""
   },
 
   "Society of Asian Scientists and Engineers": {
     "acronym": "SASE",
     "president": "Shreya TK",
-    "description": ""
+    "description": "",
+    "logo": ""
   }
 }
