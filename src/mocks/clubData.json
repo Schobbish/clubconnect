@@ -10,7 +10,7 @@
     "acronym": "VSA",
     "president": "Danny Tran",
     "description": "",
-    "logo": null
+    "logo": "./images/vsa_logo.png"
   },
 
   "Association for Computing Machinery": {
