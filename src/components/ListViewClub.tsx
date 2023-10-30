@@ -12,15 +12,17 @@ export interface ClubCardProps {
 export function ListViewClub(props: ClubCardProps) {
   return (
     <div className="listclub-container flex flex-wrap">
-      <img src={defaultTo(props.clubLogo, defaultLogo)} alt="gray box" />
+      <img
+        className="max-w-3xs rounded-xl"
+        src={defaultTo(props.clubLogo, defaultLogo)}
+        alt="gray box"
+      />
       <div className="club-information pl-10">
         <div className="clubName underline font-bold text-2xl">
           {props.clubName}
         </div>
         <div className="clubDescription">{props.clubDescription}</div>
-        <div className="clubPresident">
-          Current President: {props.clubPresident}
-        </div>
+        <div className="clubPresident">President: {props.clubPresident}</div>
       </div>
     </div>
   );
