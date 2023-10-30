@@ -18,8 +18,8 @@ export function Home() {
     apiAxios
       .get("/api/clubs")
       .then((res) => {
-        console.log(Object.keys(res.data));
-        console.log(Object.keys(res.data)[1]);
+        //console.log(Object.keys(res.data));
+        //console.log(Object.keys(res.data)[1]);
         setClubData(res.data);
       })
       .catch(() => {
