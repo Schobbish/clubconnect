@@ -30,7 +30,7 @@ export function Home() {
   return (
     <div className="home">
       <NavBar />
-      <div className="mx-auto max-w-5xl">
+      <div className="px-2 mx-auto max-w-5xl">
         <h1>Top Clubs</h1>
         <div className="cards-container flex flex-wrap gap-5 pt-5">
           {Object.keys(clubData).map((club) => (

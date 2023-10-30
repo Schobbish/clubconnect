@@ -12,15 +12,14 @@ export function NavBar() {
 
   return (
     <div className="navbar-outer bg-gray">
-      <div className="navbar-inner flex mx-auto max-w-5xl">
-        <Link to="/">
-          <img
-            className="logo justify-self-start my-0.5 h-12"
-            src={logo}
-            alt="ClubConnect logo"
-          />
+      <div className="navbar-inner flex flex-wrap px-2 mx-auto max-w-5xl">
+        <Link
+          className="flex items-center py-2 pr-2 mx-auto sm:mx-0 h-16"
+          to="/"
+        >
+          <img className="logo h-12" src={logo} alt="ClubConnect logo" />
         </Link>
-        <div className="ml-auto">
+        <div className="flex items-center mx-auto sm:mr-0 h-16">
           <Formik
             initialValues={{
               query: ""
@@ -31,10 +30,10 @@ export function NavBar() {
               );
             }}
           >
-            <Form className="flex items-center h-full">
+            <Form>
               <div className="flex border">
                 <Field
-                  className="p-1"
+                  className="p-1 w-52 z-10"
                   id="query"
                   name="query"
                   placeholder="Search"
