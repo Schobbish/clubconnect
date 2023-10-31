@@ -21,8 +21,12 @@ export function ListViewClub(props: ClubCardProps) {
         <div className="clubName underline font-bold text-2xl">
           {props.clubName}
         </div>
-        <div className="clubDescription">{props.clubDescription}</div>
-        <div className="clubPresident">President: {props.clubPresident}</div>
+        <div className="clubDescription max-w-3xl pt-2 pb-2">
+          {props.clubDescription}
+        </div>
+        <div className="clubPresident underline">
+          President: {props.clubPresident}
+        </div>
       </div>
     </div>
   );
