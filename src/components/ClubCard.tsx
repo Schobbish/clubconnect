@@ -3,7 +3,7 @@ import { inferLogoSource } from "../util/misc";
 
 export interface ClubCardProps {
   clubName: string;
-  clubLogo: string;
+  clubLogo?: string;
 }
 
 export function ClubCard(props: ClubCardProps) {
