@@ -1,21 +1,14 @@
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { Link, createSearchParams } from "react-router-dom";
 import { inferLogoSource } from "../util/misc";
 
 export interface ClubCardProps {
-  clubName?: string;
-  clubLogo?: string;
+  clubName: string;
+  clubLogo: string;
 }
 
 export function ClubCard(props: ClubCardProps) {
-  const navigate = useNavigate();
-
   return (
-    <a
-      onClick={() => {
-        navigate("/club?" + createSearchParams(props.clubName));
-        return;
-      }}
-    >
+    <Link to={"/club?" + createSearchParams({ name: props.clubName })}>
       <div className="clubcard-container max-w-3xs">
         <div className="image-container h-48">
           <img
@@ -28,6 +21,6 @@ export function ClubCard(props: ClubCardProps) {
           {props.clubName}
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

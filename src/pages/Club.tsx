@@ -1,16 +1,13 @@
+import { defaultTo, isUndefined } from "lodash-es";
 import { useEffect, useState } from "react";
-import { apiAxios } from "../util/api";
-import { ClubData } from "../models/ClubData";
 import { useSearchParams } from "react-router-dom";
-import { defaultTo } from "lodash-es";
+import { ClubData } from "../models/ClubData";
+import { apiAxios } from "../util/api";
 
 export function Club() {
   const [clubData, setClubData] = useState<ClubData>({});
   const searchParams = useSearchParams()[0];
-  const query = defaultTo(searchParams.get("q"), "").toLowerCase();
-  console.log(searchParams); //somehow not getting the correct query values from the Clubcard
-  console.log(query);
-  console.log(clubData); //just to avoid the warning lol
+  const name = defaultTo(searchParams.get("name"), "");
 
   useEffect(() => {
     apiAxios
@@ -29,6 +26,10 @@ export function Club() {
       <div className="club-contact-info-container">
         This is where all the emails and socials should be contained (maybe some
         icons)
+        <br />
+        {name}
+        <br />
+        {!isUndefined(clubData[name]) && clubData[name].description}
       </div>
     </div>
   );
