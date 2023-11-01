@@ -1,5 +1,11 @@
 import { Field, Form, Formik } from "formik";
-import { Link, createSearchParams, useNavigate } from "react-router-dom";
+import { defaultTo } from "lodash-es";
+import {
+  Link,
+  createSearchParams,
+  useNavigate,
+  useSearchParams
+} from "react-router-dom";
 import logo from "../images/logo.png";
 import search from "../images/search.svg";
 
@@ -8,6 +14,7 @@ interface SearchFormValues {
 }
 
 export function NavBar() {
+  const searchParams = useSearchParams()[0];
   const navigate = useNavigate();
 
   return (
@@ -22,7 +29,7 @@ export function NavBar() {
         <div className="flex items-center mx-auto sm:mr-0 h-16">
           <Formik
             initialValues={{
-              query: ""
+              query: defaultTo(searchParams.get("q"), "")
             }}
             onSubmit={(values: SearchFormValues) => {
               navigate(
