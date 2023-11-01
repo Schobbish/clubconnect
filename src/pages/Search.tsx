@@ -3,49 +3,31 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ClubResultsView } from "../components/ClubResultsView";
 import { NavBar } from "../components/NavBar";
-import { ClubData } from "../models/ClubData";
-import { apiAxios } from "../util/api";
+import { ClubData } from "../models/clubTypes";
+import { apiAxios, getErrorMessage } from "../util/api";
 
 export function Search() {
-  const [clubData, setClubData] = useState<ClubData>({});
+  const [clubList, setClubList] = useState<ClubData[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const searchParams = useSearchParams()[0];
   const query = defaultTo(searchParams.get("q"), "").toLowerCase();
-  const clubOrder = Object.keys(clubData)
-    .filter((clubName) => clubName.toLowerCase().includes(query))
-    .sort((a, b) => {
-      // really inefficient since it keeps converting to lowercase
-      const lowerCaseA = a.toLowerCase();
-      const lowerCaseB = b.toLowerCase();
-      // sort by index query appears at in the name
-      const queryIndexA = lowerCaseA.indexOf(query);
-      const queryIndexB = lowerCaseB.indexOf(query);
-
-      if (queryIndexA === queryIndexB) {
-        // tiebreaker: compare normally (ignoring case)
-        return lowerCaseA.localeCompare(lowerCaseB);
-      } else {
-        return queryIndexA - queryIndexB;
-      }
-    });
 
   useEffect(() => {
     apiAxios
-      .get("/api/clubs")
+      .get("/api/searchClubs", { params: { q: query } })
       .then((res) => {
-        setClubData(res.data);
+        setClubList(res.data);
       })
-      .catch(() => {
-        console.error("failed to get club data");
-      });
-  }, []);
+      .catch((err) => setErrorMessage(getErrorMessage(err)));
+  }, [query]);
 
   return (
     <div className="search">
       <NavBar />
       <ClubResultsView
         title="Search Results"
-        clubData={clubData}
-        order={clubOrder}
+        clubList={clubList}
+        errorMessage={errorMessage}
       />
     </div>
   );
