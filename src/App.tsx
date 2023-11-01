@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Error404 } from "./pages/Error404";
 import { Home } from "./pages/Home";
+import { Search } from "./pages/Search";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="*" element={<Error404 />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </div>
