@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ClubResultsView } from "../components/ClubResultsView";
 import { NavBar } from "../components/NavBar";
+import { ViewStyleSwitcher } from "../components/ViewStyleSwitcher";
 import { ClubData } from "../models/clubTypes";
 import { apiAxios } from "../util/api";
 
@@ -21,7 +22,13 @@ export function Home() {
   return (
     <div className="home">
       <NavBar />
-      <ClubResultsView title="Top Clubs" clubList={clubList} />
+      <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
+        <div className="flex">
+          <h1 className="font-bold text-3xl">Top Clubs</h1>
+          <ViewStyleSwitcher />
+        </div>
+        <ClubResultsView clubList={clubList} />
+      </div>
     </div>
   );
 }

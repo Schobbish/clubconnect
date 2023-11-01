@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ClubResultsView } from "../components/ClubResultsView";
 import { NavBar } from "../components/NavBar";
+import { ViewStyleSwitcher } from "../components/ViewStyleSwitcher";
 import { ClubData } from "../models/clubTypes";
 import { apiAxios, getErrorMessage } from "../util/api";
 
@@ -24,11 +25,17 @@ export function Search() {
   return (
     <div className="search">
       <NavBar />
-      <ClubResultsView
-        title="Search Results"
-        clubList={clubList}
-        errorMessage={errorMessage}
-      />
+      <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
+        <div className="flex">
+          <h1 className="font-bold text-3xl">Search Results</h1>
+          <ViewStyleSwitcher />
+        </div>
+        {errorMessage ? (
+          <span className="api-error">{errorMessage}</span>
+        ) : (
+          <ClubResultsView clubList={clubList} />
+        )}
+      </div>
     </div>
   );
 }
