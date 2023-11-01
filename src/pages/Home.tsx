@@ -2,16 +2,8 @@ import { useEffect, useState } from "react";
 import { ClubCard } from "../components/ClubCard";
 import { ListViewClub } from "../components/ListViewClub";
 import { NavBar } from "../components/NavBar";
+import { ClubData } from "../models/ClubData";
 import { apiAxios } from "../util/api";
-
-export interface ClubData {
-  [name: string]: {
-    acronym: string;
-    president: string;
-    description: string;
-    logo: string;
-  };
-}
 
 export function Home() {
   const [clubData, setClubData] = useState<ClubData>({});

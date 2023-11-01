@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
 import { ClubCard } from "../components/ClubCard";
 import { NavBar } from "../components/NavBar";
+import { ClubData } from "../models/ClubData";
 import { apiAxios } from "../util/api";
 
 export interface SearchResultsProps {
   searchQuery?: string;
-}
-
-export interface ClubData {
-  [name: string]: {
-    acronym: string;
-    president: string;
-    description: string;
-  };
 }
 
 export function SearchResults() {
