@@ -41,6 +41,13 @@
     "logo": "/images/chess_logo.png"
   },
 
+  "Chinese Student Association": {
+    "acronym": "CSA",
+    "president": "Michelle Tan",
+    "description": "",
+    "logo": "/images/CSA_logo.png"
+  },
+
   "Comet Comedy": {
     "acronym": "CC",
     "president": "Viswa Rajagopalan",
