@@ -4,6 +4,7 @@ import { NavBar } from "../components/NavBar";
 import { ViewStyleSwitcher } from "../components/ViewStyleSwitcher";
 import { ClubData } from "../models/clubTypes";
 import { apiAxios } from "../util/api";
+import { Sidebar } from "../components/Sidebar";
 
 export function Home() {
   const [clubList, setClubList] = useState<ClubData[]>([]);
@@ -22,12 +23,15 @@ export function Home() {
   return (
     <div className="home">
       <NavBar />
-      <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
-        <div className="flex">
-          <h1 className="font-bold text-3xl">Top Clubs</h1>
-          <ViewStyleSwitcher />
+      <div className="home-main-content flex">
+        <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
+          <div className="flex">
+            <h1 className="font-bold text-3xl">Top Clubs</h1>
+            <ViewStyleSwitcher />
+          </div>
+          <ClubResultsView clubList={clubList} />
         </div>
-        <ClubResultsView clubList={clubList} />
+        <Sidebar />
       </div>
     </div>
   );
