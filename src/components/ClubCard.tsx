@@ -1,3 +1,4 @@
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { inferLogoSource } from "../util/misc";
 
 export interface ClubCardProps {
@@ -6,18 +7,27 @@ export interface ClubCardProps {
 }
 
 export function ClubCard(props: ClubCardProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className="clubcard-container max-w-3xs">
-      <div className="image-container h-48">
-        <img
-          className="rounded-xl"
-          src={inferLogoSource(props.clubLogo)}
-          alt="gray box"
-        />
+    <a
+      onClick={() => {
+        navigate("/club?" + createSearchParams(props.clubName));
+        return;
+      }}
+    >
+      <div className="clubcard-container max-w-3xs">
+        <div className="image-container h-48">
+          <img
+            className="rounded-xl"
+            src={inferLogoSource(props.clubLogo)}
+            alt="gray box"
+          />
+        </div>
+        <div className="clubname text-center pt-1 font-medium">
+          {props.clubName}
+        </div>
       </div>
-      <div className="clubname text-center pt-1 font-medium">
-        {props.clubName}
-      </div>
-    </div>
+    </a>
   );
 }
