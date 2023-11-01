@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { ClubResultsView } from "../components/ClubResultsView";
 import { NavBar } from "../components/NavBar";
-import { ClubData } from "../models/ClubData";
+import { ClubData } from "../models/clubTypes";
 import { apiAxios } from "../util/api";
 
 export function Home() {
-  const [clubData, setClubData] = useState<ClubData>({});
+  const [clubList, setClubList] = useState<ClubData[]>([]);
 
   useEffect(() => {
     apiAxios
-      .get("/api/clubs")
+      .get("/api/getTopClubs")
       .then((res) => {
-        setClubData(res.data);
+        setClubList(res.data);
       })
       .catch(() => {
         console.error("failed to get club data");
@@ -21,7 +21,7 @@ export function Home() {
   return (
     <div className="home">
       <NavBar />
-      <ClubResultsView title="Top Clubs" clubData={clubData} />
+      <ClubResultsView title="Top Clubs" clubList={clubList} />
     </div>
   );
 }

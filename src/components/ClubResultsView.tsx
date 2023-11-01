@@ -1,25 +1,17 @@
-import { defaultTo, shuffle } from "lodash-es";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import gridIcon from "../images/grid.svg";
 import listIcon from "../images/list.svg";
-import { ClubData } from "../models/ClubData";
+import { ClubData } from "../models/clubTypes";
 import { ClubCard } from "./ClubCard";
 import { ClubListItem } from "./ClubListItem";
 
 export interface ClubResultsViewProps {
   title: string;
-  clubData: ClubData;
-  /** Array of club names to specify display order (default: random) */
-  order?: string[];
+  clubList: ClubData[];
 }
 
 export function ClubResultsView(props: ClubResultsViewProps) {
   const [viewStyle, setViewStyle] = useState("grid");
-  // stops it from reshuffling on viewStyle update
-  const inferredOrder = useMemo(
-    () => defaultTo(props.order, shuffle(Object.keys(props.clubData))),
-    [props]
-  );
 
   return (
     <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
@@ -36,20 +28,20 @@ export function ClubResultsView(props: ClubResultsViewProps) {
       </div>
       <div className="cards-container flex flex-wrap gap-5 pt-5">
         {viewStyle === "grid"
-          ? inferredOrder.map((clubName) => (
+          ? props.clubList.map((club) => (
               <ClubCard
-                clubName={clubName}
-                key={clubName}
-                clubLogo={props.clubData[clubName].logo}
+                clubName={club.name}
+                clubLogo={club.logo}
+                key={club.name}
               />
             ))
-          : inferredOrder.map((clubName) => (
+          : props.clubList.map((club) => (
               <ClubListItem
-                key={clubName}
-                clubName={clubName}
-                clubDescription={props.clubData[clubName].description}
-                clubPresident={props.clubData[clubName].president}
-                clubLogo={props.clubData[clubName].logo}
+                clubName={club.name}
+                clubDescription={club.description}
+                clubPresident={club.president}
+                clubLogo={club.logo}
+                key={club.name}
               />
             ))}
       </div>
