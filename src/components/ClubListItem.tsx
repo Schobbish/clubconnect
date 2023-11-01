@@ -1,5 +1,4 @@
-import { defaultTo } from "lodash-es";
-import defaultLogo from "../images/Default Logo.png";
+import { inferLogoSource } from "../util/misc";
 
 export interface ClubListItemProps {
   clubName?: string;
@@ -14,7 +13,7 @@ export function ClubListItem(props: ClubListItemProps) {
     <div className="listclub-container flex flex-wrap">
       <img
         className="max-w-3xs rounded-xl"
-        src={defaultTo(props.clubLogo, defaultLogo)}
+        src={inferLogoSource(props.clubLogo)}
         alt="gray box"
       />
       <div className="club-information pl-10">

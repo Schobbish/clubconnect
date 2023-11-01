@@ -1,5 +1,4 @@
-import { defaultTo } from "lodash-es";
-import defaultLogo from "../images/Default Logo.png";
+import { inferLogoSource } from "../util/misc";
 
 export interface ClubCardProps {
   clubName?: string;
@@ -11,7 +10,7 @@ export function ClubCard(props: ClubCardProps) {
     <div className="clubcard-container max-w-3xs">
       <img
         className="rounded-xl"
-        src={defaultTo(props.clubLogo, defaultLogo)}
+        src={inferLogoSource(props.clubLogo)}
         alt="gray box"
       />
       <div className="clubname text-center">{props.clubName}</div>
