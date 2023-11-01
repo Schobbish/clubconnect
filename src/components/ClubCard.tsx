@@ -8,12 +8,16 @@ export interface ClubCardProps {
 export function ClubCard(props: ClubCardProps) {
   return (
     <div className="clubcard-container max-w-3xs">
-      <img
-        className="rounded-xl"
-        src={inferLogoSource(props.clubLogo)}
-        alt="gray box"
-      />
-      <div className="clubname text-center">{props.clubName}</div>
+      <div className="image-container h-48">
+        <img
+          className="rounded-xl"
+          src={inferLogoSource(props.clubLogo)}
+          alt="gray box"
+        />
+      </div>
+      <div className="clubname text-center pt-1 font-medium">
+        {props.clubName}
+      </div>
     </div>
   );
 }
