@@ -1,7 +1,7 @@
 import { defaultTo, shuffle } from "lodash-es";
 import { ClubData } from "../models/ClubData";
 import { ClubCard } from "./ClubCard";
-import { ListViewClub } from "./ListViewClub";
+import { ClubListItem } from "./ClubListItem";
 
 export interface ClubResultsViewProps {
   title: string;
@@ -30,7 +30,7 @@ export function ClubResultsView(props: ClubResultsViewProps) {
               />
             ))
           : inferredOrder.map((clubName) => (
-              <ListViewClub
+              <ClubListItem
                 key={clubName}
                 clubName={clubName}
                 clubDescription={props.clubData[clubName].description}

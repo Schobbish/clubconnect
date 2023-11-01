@@ -1,7 +1,7 @@
 import { defaultTo } from "lodash-es";
 import defaultLogo from "../images/Default Logo.png";
 
-export interface ClubCardProps {
+export interface ClubListItemProps {
   clubName?: string;
   clubLogo?: string;
   clubAcronym?: string;
@@ -9,7 +9,7 @@ export interface ClubCardProps {
   clubPresident?: string;
 }
 
-export function ListViewClub(props: ClubCardProps) {
+export function ClubListItem(props: ClubListItemProps) {
   return (
     <div className="listclub-container flex flex-wrap">
       <img
