@@ -1,20 +1,26 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements
+} from "react-router-dom";
+import { Club } from "./pages/Club";
 import { Error404 } from "./pages/Error404";
 import { Home } from "./pages/Home";
 import { Search } from "./pages/Search";
-import { Club } from "./pages/Club";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route index element={<Home />} />
+      <Route path="/club" element={<Club />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="*" element={<Error404 />} />
+    </>
+  ),
+  { basename: process.env.PUBLIC_URL }
+);
 
 export default function App() {
-  return (
-    <div className="App">
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="*" element={<Error404 />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/club" element={<Club />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
