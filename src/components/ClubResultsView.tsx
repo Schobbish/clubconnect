@@ -21,7 +21,7 @@ export function ClubResultsView(props: ClubResultsViewProps) {
     <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
       <h1 className="font-bold text-3xl">{props.title}</h1>
       <div className="cards-container flex flex-wrap gap-5 pt-5">
-        {viewStyle !== "Grid"
+        {viewStyle === "Grid"
           ? inferredOrder.map((clubName) => (
               <ClubCard
                 clubName={clubName}
