@@ -2,23 +2,23 @@ import { Link, createSearchParams } from "react-router-dom";
 import { inferLogoSource } from "../util/misc";
 
 export interface ClubCardProps {
-  clubName: string;
-  clubLogo?: string;
+  name: string;
+  logo?: string;
 }
 
 export function ClubCard(props: ClubCardProps) {
   return (
-    <Link to={"/club?" + createSearchParams({ name: props.clubName })}>
+    <Link to={"/club?" + createSearchParams({ name: props.name })}>
       <div className="clubcard-container max-w-3xs">
         <div className="image-container h-48">
           <img
             className="rounded-xl"
-            src={inferLogoSource(props.clubLogo)}
-            alt={props.clubName + " logo"}
+            src={inferLogoSource(props.logo)}
+            alt={props.name + " logo"}
           />
         </div>
         <div className="clubname text-center pt-1 font-medium">
-          {props.clubName}
+          {props.name}
         </div>
       </div>
     </Link>

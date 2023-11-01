@@ -33,19 +33,15 @@ export function ClubResultsView(props: ClubResultsViewProps) {
           <span className="api-error">{props.errorMessage}</span>
         ) : viewStyle === "grid" ? (
           props.clubList.map((club) => (
-            <ClubCard
-              clubName={club.name}
-              clubLogo={club.logo}
-              key={club.name}
-            />
+            <ClubCard name={club.name} logo={club.logo} key={club.name} />
           ))
         ) : (
           props.clubList.map((club) => (
             <ClubListItem
-              clubName={club.name}
-              clubDescription={club.description}
-              clubPresident={club.president}
-              clubLogo={club.logo}
+              name={club.name}
+              description={club.description}
+              president={club.president}
+              logo={club.logo}
               key={club.name}
             />
           ))
