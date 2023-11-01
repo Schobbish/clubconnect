@@ -5,7 +5,7 @@
     "description": "The purpose of UTD FSA is to unite students who are interested in promoting the Filipino-American culture and to share, display, and preserve the Filipino-American culture as an organization. UTD FSA engages in cultural-based and social activites and is involced in philanthropic endeavors as well. Apart for that, UTD FSA offers community acitivites and oppurtunites including competeitive and non-competitive sports and dance teams.",
     "logo": "./images/fsa_logo.jpg"
   },
-
+  
   "Vietnamese Student Association": {
     "acronym": "VSA",
     "president": "Danny Tran",
@@ -32,5 +32,12 @@
     "president": "Tanmay Karandikar",
     "description": "The ASA is an educational organization dedicated to students interested in pursuing a career in actuarial science with the purpose of preparing students for their future career by supporting exam progression and promoting professional development through leadership opportunities, mentorship, and networking.",
     "logo": "./images/asa_logo.png"
+  }
+
+  "Accessible Prosthetics Initiative UT Dallas Chapter": {
+    "acronym": "API",
+    "president": "Joshua Price",
+    "description": "Our mission is to increase access to prosthetic technologies and care. We emphasize serving populations who do not have access to care through other avenues. API tackles this goal in a holistic manner through community outreach, accessible device design, and educational initiatives.",
+    "logo": "./images/API_logo.png"
   }
 }
