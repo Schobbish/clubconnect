@@ -1,9 +1,8 @@
-import { useState } from "react";
-import gridIcon from "../images/grid.svg";
-import listIcon from "../images/list.svg";
+import { useContext } from "react";
 import { ClubData } from "../models/clubTypes";
 import { ClubCard } from "./ClubCard";
 import { ClubListItem } from "./ClubListItem";
+import { ViewStyle, ViewStyleSwitcher } from "./ViewStyleSwitcher";
 
 export interface ClubResultsViewProps {
   title: string;
@@ -13,20 +12,13 @@ export interface ClubResultsViewProps {
 }
 
 export function ClubResultsView(props: ClubResultsViewProps) {
-  const [viewStyle, setViewStyle] = useState("grid");
+  const viewStyle = useContext(ViewStyle)[0];
 
   return (
     <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
       <div className="flex">
         <h1 className="font-bold text-3xl">{props.title}</h1>
-        <button
-          className="ml-auto my-auto"
-          onClick={() =>
-            viewStyle === "grid" ? setViewStyle("list") : setViewStyle("grid")
-          }
-        >
-          <img src={viewStyle === "grid" ? listIcon : gridIcon} />
-        </button>
+        <ViewStyleSwitcher />
       </div>
       <div className="cards-container flex flex-wrap gap-5 pt-5">
         {props.errorMessage ? (

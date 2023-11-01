@@ -1,9 +1,11 @@
+import { useState } from "react";
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements
 } from "react-router-dom";
+import { ViewStyle } from "./components/ViewStyleSwitcher";
 import { Club } from "./pages/Club";
 import { Error404 } from "./pages/Error404";
 import { Home } from "./pages/Home";
@@ -22,5 +24,11 @@ const router = createBrowserRouter(
 );
 
 export function App() {
-  return <RouterProvider router={router} />;
+  const viewStyleState = useState("grid");
+
+  return (
+    <ViewStyle.Provider value={viewStyleState}>
+      <RouterProvider router={router} />
+    </ViewStyle.Provider>
+  );
 }
