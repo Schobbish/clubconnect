@@ -1,10 +1,10 @@
+import { defaultTo } from "lodash-es";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ClubResultsView } from "../components/ClubResultsView";
 import { NavBar } from "../components/NavBar";
 import { ClubData } from "../models/ClubData";
 import { apiAxios } from "../util/api";
-import { defaultTo } from "lodash-es";
 
 export function Search() {
   const [clubData, setClubData] = useState<ClubData>({});
