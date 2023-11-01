@@ -8,6 +8,8 @@ import { ClubListItem } from "./ClubListItem";
 export interface ClubResultsViewProps {
   title: string;
   clubList: ClubData[];
+  /** If set, this message will be displayed instead of club items */
+  errorMessage?: string;
 }
 
 export function ClubResultsView(props: ClubResultsViewProps) {
@@ -27,23 +29,27 @@ export function ClubResultsView(props: ClubResultsViewProps) {
         </button>
       </div>
       <div className="cards-container flex flex-wrap gap-5 pt-5">
-        {viewStyle === "grid"
-          ? props.clubList.map((club) => (
-              <ClubCard
-                clubName={club.name}
-                clubLogo={club.logo}
-                key={club.name}
-              />
-            ))
-          : props.clubList.map((club) => (
-              <ClubListItem
-                clubName={club.name}
-                clubDescription={club.description}
-                clubPresident={club.president}
-                clubLogo={club.logo}
-                key={club.name}
-              />
-            ))}
+        {props.errorMessage ? (
+          <span className="api-error">{props.errorMessage}</span>
+        ) : viewStyle === "grid" ? (
+          props.clubList.map((club) => (
+            <ClubCard
+              clubName={club.name}
+              clubLogo={club.logo}
+              key={club.name}
+            />
+          ))
+        ) : (
+          props.clubList.map((club) => (
+            <ClubListItem
+              clubName={club.name}
+              clubDescription={club.description}
+              clubPresident={club.president}
+              clubLogo={club.logo}
+              key={club.name}
+            />
+          ))
+        )}
       </div>
     </div>
   );

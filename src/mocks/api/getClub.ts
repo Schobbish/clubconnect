@@ -9,10 +9,10 @@ export const getClub = rest.get(
     const name = defaultTo(req.url.searchParams.get("name"), "");
 
     if (!req.url.searchParams.has("name")) {
-      return res(ctx.status(400), ctx.json("missing name param"));
+      return res(ctx.status(400), ctx.json("Bad request: no name param"));
     }
     if (!(name in clubJson)) {
-      return res(ctx.status(404), ctx.json(`club "${name}" not found`));
+      return res(ctx.status(404), ctx.json(`Club "${name}" not found`));
     }
     return res(
       ctx.status(200),

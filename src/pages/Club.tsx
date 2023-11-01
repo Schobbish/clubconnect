@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { ClubData } from "../models/clubTypes";
-import { apiAxios } from "../util/api";
+import { apiAxios, getErrorMessage } from "../util/api";
 import { inferLogoSource } from "../util/misc";
 
 export function Club() {
   const [clubData, setClubData] = useState<ClubData>();
+  const [errorMessage, setErrorMessage] = useState("");
   const searchParams = useSearchParams()[0];
   const name = defaultTo(searchParams.get("name"), "");
   const navigate = useNavigate();
@@ -18,10 +19,10 @@ export function Club() {
       .then((res) => {
         setClubData(res.data);
       })
-      .catch(() => {
-        console.error("failed to get club data");
+      .catch((err) => {
+        setErrorMessage(getErrorMessage(err));
       });
-  }, []);
+  }, [name]);
 
   return (
     <div className="club-info-container">
@@ -32,8 +33,8 @@ export function Club() {
           Back
         </button>
         <br />
-        {isUndefined(clubData) ? (
-          <div>Club Not Found</div>
+        {errorMessage || isUndefined(clubData) ? (
+          <span className="api-error">{errorMessage}</span>
         ) : (
           <div>
             <div className="flex flex-wrap my-4 gap-2">

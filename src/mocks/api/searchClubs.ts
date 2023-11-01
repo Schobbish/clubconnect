@@ -26,12 +26,12 @@ export const searchClubs = rest.get(
       });
 
     if (!req.url.searchParams.has("q")) {
-      return res(ctx.status(400), ctx.json("missing query param"));
+      return res(ctx.status(400), ctx.json("Bad request: no query param"));
     }
     if (clubNames.length === 0) {
       return res(
         ctx.status(404),
-        ctx.json("no clubs found for query " + query)
+        ctx.json(`No clubs found for query "${query}"`)
       );
     }
     return res(ctx.status(200), ctx.json(createClubList(clubJson, clubNames)));
