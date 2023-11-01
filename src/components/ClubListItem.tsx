@@ -16,7 +16,7 @@ export function ClubListItem(props: ClubListItemProps) {
         <img
           className="max-w-3xs rounded-xl"
           src={inferLogoSource(props.clubLogo)}
-          alt="gray box"
+          alt={props.clubName + " logo"}
         />
         <div className="club-information pl-10">
           <div className="clubName underline font-bold text-2xl">

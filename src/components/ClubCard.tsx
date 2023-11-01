@@ -14,7 +14,7 @@ export function ClubCard(props: ClubCardProps) {
           <img
             className="rounded-xl"
             src={inferLogoSource(props.clubLogo)}
-            alt="gray box"
+            alt={props.clubName + " logo"}
           />
         </div>
         <div className="clubname text-center pt-1 font-medium">
