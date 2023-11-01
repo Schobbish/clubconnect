@@ -1,5 +1,5 @@
 import { defaultTo, shuffle } from "lodash-es";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import gridIcon from "../images/grid.svg";
 import listIcon from "../images/list.svg";
 import { ClubData } from "../models/ClubData";
@@ -15,9 +15,10 @@ export interface ClubResultsViewProps {
 
 export function ClubResultsView(props: ClubResultsViewProps) {
   const [viewStyle, setViewStyle] = useState("grid");
-  const inferredOrder = defaultTo(
-    props.order,
-    shuffle(Object.keys(props.clubData))
+  // stops it from reshuffling on viewStyle update
+  const inferredOrder = useMemo(
+    () => defaultTo(props.order, shuffle(Object.keys(props.clubData))),
+    [props]
   );
 
   return (
