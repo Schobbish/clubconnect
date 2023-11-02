@@ -1,6 +1,6 @@
 import { defaultTo } from "lodash-es";
 import { rest } from "msw";
-import { ClubJson } from "../../models/clubTypes";
+import { ClubData, ClubJson } from "../../models/clubTypes";
 import clubJson from "../clubs.json";
 
 export const getClub = rest.get(
@@ -16,7 +16,7 @@ export const getClub = rest.get(
     }
     return res(
       ctx.status(200),
-      ctx.json({
+      ctx.json<ClubData>({
         name,
         ...(clubJson as ClubJson)[name]
       })

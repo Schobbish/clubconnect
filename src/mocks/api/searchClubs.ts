@@ -1,5 +1,6 @@
 import { defaultTo } from "lodash-es";
 import { rest } from "msw";
+import { ClubData } from "../../models/clubTypes";
 import { createClubList } from "../../util/misc";
 import clubJson from "../clubs.json";
 
@@ -34,6 +35,9 @@ export const searchClubs = rest.get(
         ctx.json(`No clubs found for query "${query}"`)
       );
     }
-    return res(ctx.status(200), ctx.json(createClubList(clubJson, clubNames)));
+    return res(
+      ctx.status(200),
+      ctx.json<ClubData[]>(createClubList(clubJson, clubNames))
+    );
   }
 );
