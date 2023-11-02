@@ -16,7 +16,7 @@ export function ClubListItem(props: ClubListItemProps) {
     <Link to={"/club?" + createSearchParams({ name: props.name })}>
       <div className="listclub-container flex flex-wrap">
         <img
-          className="max-w-3xs rounded-xl object-cover"
+          className="max-w-3xs rounded-xl object-contain"
           src={inferLogoSource(props.logo)}
           alt={props.name + " logo"}
         />
