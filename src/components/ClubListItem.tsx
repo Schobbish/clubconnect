@@ -24,10 +24,10 @@ export function ClubListItem(props: ClubListItemProps) {
           <div className="clubName underline font-bold text-2xl">
             {props.name}
           </div>
-          <div className="clubDescription max-w-xl pt-2 pb-2">
+          <div className="clubDescription max-w-xl pt-2 line-clamp-5">
             {props.description}
           </div>
-          <div className="clubPresident underline">
+          <div className="clubPresident underline pt-2">
             President: {props.president}
           </div>
         </div>
