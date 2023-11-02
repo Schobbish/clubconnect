@@ -21,7 +21,7 @@ export function ClubListItem(props: ClubListItemProps) {
           alt={props.name + " logo"}
         />
         <div className="club-information pl-10 ">
-          <div className="clubName underline font-bold text-2xl">
+          <div className="clubName underline font-bold text-2xl max-w-[580px]">
             {props.name}
           </div>
           <div className="clubDescription max-w-xl pt-2 line-clamp-5">
