@@ -24,14 +24,16 @@ export function Home() {
     <div className="home">
       <NavBar />
       <div className="home-main-content flex">
-        <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
-          <div className="flex">
+        <div className="px-2 mx-auto max-w-5xl">
+          <Sidebar />
+          <div className="pt-4 pr-3 flex">
             <h1 className="font-bold text-3xl">Top Clubs</h1>
             <ViewStyleSwitcher />
           </div>
-          <ClubResultsView clubList={clubList} />
+          <div className="pb-12">
+            <ClubResultsView clubList={clubList} />
+          </div>
         </div>
-        <Sidebar />
       </div>
     </div>
   );
