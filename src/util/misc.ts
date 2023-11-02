@@ -10,6 +10,10 @@ export function inferLogoSource(src: string | undefined) {
   return isUndefined(src) ? defaultLogo : process.env.PUBLIC_URL + src;
 }
 
+/**
+ * Converts the club json file to an array of ClubData with contents and order
+ * defined by `clubNames`.
+ */
 export function createClubList(
   clubJson: ClubJson,
   clubNames: string[]
