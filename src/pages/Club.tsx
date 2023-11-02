@@ -1,6 +1,6 @@
 import { defaultTo, isUndefined } from "lodash-es";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { ClubData } from "../models/clubTypes";
 import { apiAxios, getErrorMessage } from "../util/api";
@@ -11,7 +11,6 @@ export function Club() {
   const [errorMessage, setErrorMessage] = useState("");
   const searchParams = useSearchParams()[0];
   const name = defaultTo(searchParams.get("name"), "");
-  const navigate = useNavigate();
 
   useEffect(() => {
     apiAxios
@@ -28,10 +27,6 @@ export function Club() {
     <div className="club-info-container">
       <NavBar />
       <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
-        {/* temp back button */}
-        <button className="bg-orange-500 border" onClick={() => navigate(-1)}>
-          Back
-        </button>
         <br />
         {errorMessage || isUndefined(clubData) ? (
           <span className="api-error">{errorMessage}</span>

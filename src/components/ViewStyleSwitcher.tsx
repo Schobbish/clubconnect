@@ -11,7 +11,7 @@ export function ViewStyleSwitcher() {
 
   return (
     <button
-      className="ml-auto my-auto"
+      className="ml-auto self-start"
       onClick={() =>
         viewStyle === "grid" ? setViewStyle("list") : setViewStyle("grid")
       }
