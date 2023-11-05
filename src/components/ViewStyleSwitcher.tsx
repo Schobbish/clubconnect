@@ -2,9 +2,9 @@ import { noop } from "lodash-es";
 import { createContext, useContext } from "react";
 import gridIcon from "../images/grid.svg";
 import listIcon from "../images/list.svg";
+import { ReactState } from "../models/misc";
 
-type ViewStyleContext = [string, React.Dispatch<React.SetStateAction<string>>];
-export const ViewStyle = createContext<ViewStyleContext>(["grid", noop]);
+export const ViewStyle = createContext<ReactState<string>>(["grid", noop]);
 
 export function ViewStyleSwitcher() {
   const [viewStyle, setViewStyle] = useContext(ViewStyle);
