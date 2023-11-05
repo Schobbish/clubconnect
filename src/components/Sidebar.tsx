@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CategoryDialog } from "./CategoryDialog";
 
 export interface SidebarProps {
   /** true to show a back button */
@@ -6,6 +8,8 @@ export interface SidebarProps {
 }
 
 export function Sidebar(props: SidebarProps) {
+  const [showCategoryFilter, setShowCategoryFilter] = useState(false);
+  const [showScheduleFilter, setShowScheduleFilter] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -24,8 +28,22 @@ export function Sidebar(props: SidebarProps) {
         <div className="pl-3 pr-1 font-bold text-xl">
           <button className="mb-6 underline block">All Clubs</button>
           <p className="mb-1 font-normal text-base">Filter by:</p>
-          <button className="mb-3 underline block">Category</button>
-          <button className="underline block">Schedule</button>
+          <button
+            className="mb-3 underline block"
+            onClick={() => setShowCategoryFilter(!showCategoryFilter)}
+          >
+            Category
+          </button>
+          <CategoryDialog
+            open={showCategoryFilter}
+            onClose={() => setShowCategoryFilter(false)}
+          />
+          <button
+            className="underline block"
+            onClick={() => setShowScheduleFilter(!showScheduleFilter)}
+          >
+            Schedule
+          </button>
         </div>
       </div>
     </div>

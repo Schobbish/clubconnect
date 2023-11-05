@@ -40,7 +40,7 @@ export function NavBar() {
             <Form>
               <div className="flex border">
                 <Field
-                  className="p-1 w-52 z-10"
+                  className="p-1 w-52"
                   id="query"
                   name="query"
                   placeholder="Search"
