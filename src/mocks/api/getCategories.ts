@@ -7,11 +7,12 @@ export const getCategories = rest.get(
     return res(
       ctx.status(200),
       ctx.json<string[]>([
-        "OneOne OneOne",
-        "TwoTwo TwoTwo",
-        "ThreeThree Three",
-        "FourFour Four",
-        "FiveFive Five"
+        "Academic",
+        "Cultural",
+        "Sport",
+        "Art",
+        "Music",
+        "Politcal"
       ])
     );
   }
