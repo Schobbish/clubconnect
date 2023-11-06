@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 
 export interface DialogProps {
   /** classes applied to body of dialog */
@@ -7,7 +7,7 @@ export interface DialogProps {
   open: boolean;
   /** called when esc or the backdrop is clicked */
   onClose: () => void;
-  children?: ReactElement;
+  children?: React.ReactNode;
 }
 
 export function Dialog(props: DialogProps) {

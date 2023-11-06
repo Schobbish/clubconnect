@@ -6,7 +6,8 @@ import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
 
 export interface CategoryDialogProps extends DialogProps {
-  ignore?: string;
+  className?: never;
+  children?: never;
 }
 
 export const CategoryFilter = createContext<ReactState<string[]>>([[], noop]);
@@ -34,8 +35,7 @@ export function CategoryDialog(props: CategoryDialogProps) {
   return (
     <Dialog
       className="category-dialog p-2 w-full max-w-lg bg-gray border-2"
-      open={props.open}
-      onClose={props.onClose}
+      {...props}
     >
       <Formik
         initialValues={{ category: categoryFilter }}
