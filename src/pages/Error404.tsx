@@ -4,7 +4,7 @@ export function Error404() {
   return (
     <div className="error-404 flex justify-center items-center min-h-screen">
       <div className="text-center">
-        <h1 className="pb-1 text-2xl">404 Not Found (from react-router)</h1>
+        <h1 className="pb-1">404 Not Found (from react-router)</h1>
         <NavLink className="nav-link" to="/">
           Home
         </NavLink>

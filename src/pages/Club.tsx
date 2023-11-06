@@ -39,7 +39,7 @@ export function Club() {
                 alt={name + " logo"}
               />
               <div className="mt-auto max-w-2xl">
-                <h1 className="font-bold text-3xl mb-2">{name}</h1>
+                <h1 className="mb-2">{name}</h1>
                 This will contain the club information including meeting times
                 <div className="club-contact-info-container">
                   This is where all the emails and socials should be contained

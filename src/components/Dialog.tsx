@@ -45,7 +45,7 @@ export function Dialog(props: DialogProps) {
       >
         <div
           className={
-            "dialog-body overflow-y-scroll max-h-full text-base font-normal text-left " +
+            "dialog-body overflow-y-scroll p-2 max-h-full text-base font-normal text-left bg-gray border-2 " +
             props.className
           }
           onClick={(e) => e.stopPropagation()}

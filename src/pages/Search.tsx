@@ -27,7 +27,7 @@ export function Search() {
       <NavBar />
       <div className="px-2 pt-4 pb-12 mx-auto max-w-5xl">
         <div className="flex">
-          <h1 className="font-bold text-3xl">Search Results</h1>
+          <h1>Search Results</h1>
           <ViewStyleSwitcher />
         </div>
         {errorMessage ? (

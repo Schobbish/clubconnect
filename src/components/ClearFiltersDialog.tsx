@@ -11,11 +11,8 @@ export function ClearFiltersDialog(props: ClearFiltersDialogProps) {
   const setCategoryFilter = useContext(CategoryFilter)[1];
 
   return (
-    <Dialog
-      className="clear-filters-dialog p-2 w-full max-w-xs bg-gray border-2"
-      {...props}
-    >
-      <h3 className="text-xl font-bold">This clears all filters</h3>
+    <Dialog className="clear-filters-dialog w-full max-w-xs" {...props}>
+      <h3>This clears all filters</h3>
       <p className="mb-2">Proceed?</p>
       <button
         className="button-primary mr-2"

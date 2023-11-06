@@ -46,7 +46,7 @@ export function CategoryDialog(props: CategoryDialogProps) {
       >
         {() => (
           <Form>
-            <h3 className="text-xl font-bold">Categories</h3>
+            <h3>Categories</h3>
             <p className="mb-1">Select categories you would like to see</p>
             {errorMessage ? (
               <span className="api-error">{errorMessage}</span>

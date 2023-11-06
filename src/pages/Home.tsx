@@ -27,7 +27,7 @@ export function Home() {
         <div className="px-2 mx-auto max-w-5xl">
           <Sidebar />
           <div className="pt-4 pr-3 flex">
-            <h1 className="font-bold text-3xl">Top Clubs</h1>
+            <h1>Top Clubs</h1>
             <ViewStyleSwitcher />
           </div>
           <div className="pb-12">
