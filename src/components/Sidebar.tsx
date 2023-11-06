@@ -15,7 +15,7 @@ export function Sidebar(props: SidebarProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="sidebar-container border-l-2 top-0 h-screen pt-4 text-center">
+    <div className="sidebar-container top-0 h-screen pt-4 text-center">
       <div className="sticky">
         <div className="h-14">
           {props.backButton && (

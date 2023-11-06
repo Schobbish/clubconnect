@@ -19,7 +19,7 @@ export function MainLayout(props: MainLayoutProps) {
       <NavBar />
       <div className="px-2 mx-auto max-w-5xl w-full flex flex-row-reverse">
         <Sidebar backButton={props.showBackButton} />
-        <div>
+        <div className="border-r-2">
           <div className="pt-4 pr-3 flex">
             <h1>{props.headline}</h1>
             {props.showViewStyleSwitcher && <ViewStyleSwitcher />}
