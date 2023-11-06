@@ -24,7 +24,7 @@ export function Home() {
     <div className="home">
       <NavBar />
       <div className="home-main-content flex">
-        <div className="px-2 mx-auto max-w-5xl">
+        <div className="px-2 mx-auto w-full max-w-5xl">
           <Sidebar />
           <div className="pt-4 pr-3 flex">
             <h1>Top Clubs</h1>
