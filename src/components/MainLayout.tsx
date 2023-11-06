@@ -15,7 +15,7 @@ export interface MainLayoutProps {
 
 export function MainLayout(props: MainLayoutProps) {
   return (
-    <div className="club-info-container">
+    <div className={props.className}>
       <NavBar />
       <div className="px-2 mx-auto max-w-5xl w-full flex flex-row-reverse">
         <Sidebar backButton={props.showBackButton} />
