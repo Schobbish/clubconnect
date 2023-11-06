@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CategoryDialog } from "./CategoryDialog";
-import { ClearFiltersDialog } from "./ClearFiltersDialog";
+import { AllClubsDialog } from "./AllClubsDialog";
 
 export interface SidebarProps {
   /** true to show a back button */
@@ -34,7 +34,7 @@ export function Sidebar(props: SidebarProps) {
           >
             All Clubs
           </button>
-          <ClearFiltersDialog
+          <AllClubsDialog
             open={showClearFiltersDialog}
             onClose={() => setShowClearFiltersDialog(false)}
           />

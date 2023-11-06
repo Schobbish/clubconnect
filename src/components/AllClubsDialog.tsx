@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import { Dialog, DialogProps } from "./Dialog";
 import { CategoryFilter } from "./CategoryDialog";
+import { useNavigate } from "react-router-dom";
 
-export interface ClearFiltersDialogProps extends DialogProps {
+export interface AllClubsDialogProps extends DialogProps {
   className?: never;
   children?: never;
 }
 
-export function ClearFiltersDialog(props: ClearFiltersDialogProps) {
+export function AllClubsDialog(props: AllClubsDialogProps) {
   const setCategoryFilter = useContext(CategoryFilter)[1];
+  const navigate = useNavigate();
 
   return (
     <Dialog className="clear-filters-dialog w-full max-w-xs" {...props}>
@@ -19,7 +21,7 @@ export function ClearFiltersDialog(props: ClearFiltersDialogProps) {
         type="button"
         onClick={() => {
           setCategoryFilter([]);
-          props.onClose();
+          navigate("/search");
         }}
       >
         Yes
