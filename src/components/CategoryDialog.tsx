@@ -1,52 +1,85 @@
-import { Field, Formik } from "formik";
-import { Form, createSearchParams, useNavigate } from "react-router-dom";
+import { Field, Form, Formik } from "formik";
+import { noop } from "lodash-es";
+import { createContext, useContext, useEffect, useState } from "react";
+import { ReactState } from "../models/misc";
+import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
 
 export interface CategoryDialogProps extends DialogProps {
   ignore?: string;
 }
 
+export const CategoryFilter = createContext<ReactState<string[]>>([[], noop]);
+
+interface CategoryFormValues {
+  category: string[];
+}
+
 export function CategoryDialog(props: CategoryDialogProps) {
-  const navigate = useNavigate();
+  const [categoryFilter, setCategoryFilter] = useContext(CategoryFilter);
+  const [categoryList, setCategoryList] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    apiAxios
+      .get("/api/getCategories")
+      .then((res) => {
+        setCategoryList(res.data);
+      })
+      .catch((err) => {
+        setErrorMessage(getErrorMessage(err));
+      });
+  }, []);
 
   return (
     <Dialog
-      className="filter-bar-container bg-gray border-2"
+      className="category-dialog p-2 w-full max-w-lg bg-gray border-2"
       open={props.open}
       onClose={props.onClose}
     >
       <Formik
-        initialValues={{ toggle: false, checked: [] }}
-        onSubmit={() => {
-          navigate("/filter?" + createSearchParams({}));
+        initialValues={{ category: categoryFilter }}
+        onSubmit={(values: CategoryFormValues) => {
+          setCategoryFilter(values.category);
+          props.onClose();
         }}
       >
-        {({ values }) => (
+        {() => (
           <Form>
-            <label>
-              <Field type="checkbox" name="toggle" />
-              {`${values.toggle}`}
-            </label>
-
-            <div id="checkbox-group">Checked</div>
-            <div role="group" aria-labelledby="checkbox-group">
-              <label>
-                <Field type="checkbox" name="checked" value="One" />
-                One
-              </label>
-              <label>
-                <Field type="checkbox" name="checked" value="Two" />
-                Two
-              </label>
-              <label>
-                <Field type="checkbox" name="checked" value="Three" />
-                Three
-              </label>
-            </div>
-
-            <button className="border-2" type="submit">
-              Search
-            </button>
+            <h3 className="text-xl font-bold">Categories</h3>
+            <p className="mb-1">Select categories you would like to see</p>
+            {errorMessage ? (
+              <span className="api-error">{errorMessage}</span>
+            ) : (
+              <>
+                <div className="mb-2">
+                  {categoryList.map((val) => (
+                    <label className="block" key={val}>
+                      <Field
+                        className="mr-1"
+                        type="checkbox"
+                        name="category"
+                        value={val}
+                      />
+                      {val}
+                    </label>
+                  ))}
+                </div>
+                <button className="button-primary mr-2" type="submit">
+                  Apply Filter
+                </button>
+                <button
+                  className="button-secondary"
+                  type="button"
+                  onClick={() => {
+                    setCategoryFilter([]);
+                    props.onClose();
+                  }}
+                >
+                  Clear Filter
+                </button>
+              </>
+            )}
           </Form>
         )}
       </Formik>

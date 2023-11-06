@@ -18,7 +18,7 @@ export function Sidebar(props: SidebarProps) {
         <div className="h-14">
           {props.backButton && (
             <button
-              className="bg-orange-500 border ml-auto block p-0.5"
+              className="button-primary ml-auto block"
               onClick={() => navigate(-1)}
             >
               Back

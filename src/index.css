@@ -11,5 +11,10 @@
 }
 
 @layer components {
-  /* component-specific styles usually go here */
+  .button-primary {
+    @apply bg-orange-500 border p-0.5;
+  }
+  .button-secondary {
+    @apply bg-gray border p-0.5;
+  }
 }

@@ -10,6 +10,7 @@ import { Club } from "./pages/Club";
 import { Error404 } from "./pages/Error404";
 import { Home } from "./pages/Home";
 import { Search } from "./pages/Search";
+import { CategoryFilter } from "./components/CategoryDialog";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,10 +26,13 @@ const router = createBrowserRouter(
 
 export function App() {
   const viewStyleState = useState("grid");
+  const categoryFilterState = useState<string[]>([]);
 
   return (
     <ViewStyle.Provider value={viewStyleState}>
-      <RouterProvider router={router} />
+      <CategoryFilter.Provider value={categoryFilterState}>
+        <RouterProvider router={router} />
+      </CategoryFilter.Provider>
     </ViewStyle.Provider>
   );
 }
