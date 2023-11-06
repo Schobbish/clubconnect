@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CategoryDialog } from "./CategoryDialog";
 import { AllClubsDialog } from "./AllClubsDialog";
+import { CategoryDialog } from "./CategoryDialog";
 
 export interface SidebarProps {
   /** true to show a back button */

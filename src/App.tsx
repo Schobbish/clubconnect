@@ -5,12 +5,12 @@ import {
   createBrowserRouter,
   createRoutesFromElements
 } from "react-router-dom";
+import { CategoryFilter } from "./components/CategoryDialog";
 import { ViewStyle } from "./components/ViewStyleSwitcher";
 import { Club } from "./pages/Club";
 import { Error404 } from "./pages/Error404";
 import { Home } from "./pages/Home";
 import { Search } from "./pages/Search";
-import { CategoryFilter } from "./components/CategoryDialog";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

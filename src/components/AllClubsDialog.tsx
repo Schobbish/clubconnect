@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { Dialog, DialogProps } from "./Dialog";
-import { CategoryFilter } from "./CategoryDialog";
 import { useNavigate } from "react-router-dom";
+import { CategoryFilter } from "./CategoryDialog";
+import { Dialog, DialogProps } from "./Dialog";
 
 export interface AllClubsDialogProps extends DialogProps {
   className?: never;
