@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CategoryFilter } from "./CategoryDialog";
 import { Dialog, DialogProps } from "./Dialog";
 
-export interface AllClubsDialogProps extends DialogProps {
-  className?: never;
-  children?: never;
-}
+export type AllClubsDialogProps = Omit<DialogProps, "className" | "children">;
 
 export function AllClubsDialog(props: AllClubsDialogProps) {
   const setCategoryFilter = useContext(CategoryFilter)[1];

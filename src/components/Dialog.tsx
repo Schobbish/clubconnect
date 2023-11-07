@@ -22,7 +22,7 @@ export function Dialog(props: DialogProps) {
     };
   }, []);
 
-  // disable body scrolling when open
+  // disable body scrolling when open (try to)
   // https://www.reddit.com/r/nextjs/comments/1312tna/comment/jhyhyu7/
   useEffect(() => {
     if (props.open) {

@@ -5,12 +5,9 @@ import { ReactState } from "../models/misc";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
 
-export interface CategoryDialogProps extends DialogProps {
-  className?: never;
-  children?: never;
-}
-
 export const CategoryFilter = createContext<ReactState<string[]>>([[], noop]);
+
+export type CategoryDialogProps = Omit<DialogProps, "className" | "children">;
 
 interface CategoryFormValues {
   category: string[];
