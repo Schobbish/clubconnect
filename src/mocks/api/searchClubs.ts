@@ -1,8 +1,8 @@
 import { defaultTo, shuffle } from "lodash-es";
 import { rest } from "msw";
-import { ClubData, ClubJson } from "../../models/clubTypes";
+import { ClubData } from "../../models/clubTypes";
 import { createClubList } from "../../util/misc";
-import clubJson from "../clubs.json";
+import { clubJson } from "../clubJson";
 
 export const searchClubs = rest.get(
   process.env.PUBLIC_URL + "/api/searchClubs",
@@ -24,7 +24,7 @@ export const searchClubs = rest.get(
           clubName.toLowerCase().includes(query) &&
           (categories.length === 0 ||
             categories
-              .map((val) => (clubJson as ClubJson)[clubName].tags.includes(val))
+              .map((val) => clubJson[clubName].tags.includes(val))
               .includes(true))
       )
       .sort((a, b) => {
