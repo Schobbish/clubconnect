@@ -21,6 +21,7 @@ export function Search() {
       })
       .then((res) => {
         setClubList(res.data);
+        setErrorMessage("");
       })
       .catch((err) => setErrorMessage(getErrorMessage(err)));
   }, [query, categoryFilter]);

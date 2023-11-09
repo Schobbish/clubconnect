@@ -3,7 +3,7 @@ interface ClubFields {
   president: string;
   description: string;
   logo: string;
-  tags: string[];
+  categories: string[];
 }
 type ClubName = string;
 
