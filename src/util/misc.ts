@@ -25,3 +25,17 @@ export function createClubList(
     };
   });
 }
+
+/**
+ * Converts the time in minutes into clock time
+ */
+export function convertMinutesToTime(minutesTime: number) {
+  const meridiem = Math.floor(minutesTime / 60) > 12 ? "PM" : "AM";
+  const hours =
+    Math.floor(minutesTime / 60) > 12
+      ? Math.floor(minutesTime / 60) - 12
+      : Math.floor(minutesTime / 60);
+  const minutes = minutesTime % 60 == 0 ? "00" : minutesTime % 60;
+
+  return hours + ":" + minutes + meridiem;
+}

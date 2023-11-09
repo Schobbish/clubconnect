@@ -1,4 +1,5 @@
 import { weekOrder, MeetingSchedule } from "../models/meetingTypes";
+import { convertMinutesToTime } from "../util/misc";
 
 interface CalendarProps {
   meetingSchedule: MeetingSchedule;
@@ -24,25 +25,11 @@ export function Calendar(props: CalendarProps) {
               {props.meetingSchedule[dayOfWeek]?.map((val) => val.name)}
             </div>
             {props.meetingSchedule[dayOfWeek]?.map(
-              (val) =>
-                "Starts: " +
-                (Math.floor(val.startTime / 60) > 12
-                  ? Math.floor(val.startTime / 60) - 12
-                  : Math.floor(val.startTime / 60)) +
-                ":" +
-                (val.startTime % 60 == 0 ? "00" : val.startTime % 60) +
-                (Math.floor(val.startTime / 60) > 12 ? "PM" : "AM")
+              (val) => "Starts: " + convertMinutesToTime(val.startTime)
             )}
             <br />
             {props.meetingSchedule[dayOfWeek]?.map(
-              (val) =>
-                "Ends: " +
-                (Math.floor(val.endTime / 60) > 12
-                  ? Math.floor(val.endTime / 60) - 12
-                  : Math.floor(val.endTime / 60)) +
-                ":" +
-                (val.endTime % 60 == 0 ? "00" : val.endTime % 60) +
-                (Math.floor(val.endTime / 60) > 12 ? "PM" : "AM")
+              (val) => "Ends: " + convertMinutesToTime(val.endTime)
             )}
           </div>
         ))}
