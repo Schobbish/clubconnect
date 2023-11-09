@@ -6,7 +6,15 @@
 
 @layer base {
   html {
-    @apply bg-orange-200;
+    /* only seems to work properly on firefox */
+    background: linear-gradient(
+      to top,
+      theme("colors.green"),
+      theme("colors.green") 50%,
+      theme("colors.gray") 50%,
+      theme("colors.gray")
+    );
+    @apply bg-fixed;
   }
   h1 {
     @apply text-3xl font-bold;
