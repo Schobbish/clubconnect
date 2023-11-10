@@ -1,5 +1,6 @@
 import discordClyde from "../images/icon_clyde_black_RGB.svg";
 import instagramIcon from "../images/instagram.svg";
+import facebookIcon from "../images/facebook.svg";
 
 interface DisplayIconsProps {
   social: string;
@@ -11,17 +12,25 @@ export function DisplayIcons(props: DisplayIconsProps) {
     <>
       {props.socialsLink ? (
         <div className="social-icons flex flex-wrap">
-          {props.social === "Instagram" && props.socialsLink != "" ? (
-            <a className="pr-2" href={props.socialsLink}>
+          {props.social === "Instagram" ? (
+            <a className="px-1" href={props.socialsLink}>
               <img className="h-[24px]" src={instagramIcon} />
             </a>
           ) : (
             ""
           )}
 
-          {props.social === "Discord" && props.socialsLink != "" ? (
+          {props.social === "Discord" ? (
             <a href={props.socialsLink}>
-              <img className="h-[24px]" src={discordClyde} />
+              <img className="h-[24px] px-1" src={discordClyde} />
+            </a>
+          ) : (
+            ""
+          )}
+
+          {props.social === "Facebook" ? (
+            <a href={props.socialsLink}>
+              <img className="h-[24px] px-1" src={facebookIcon} />
             </a>
           ) : (
             ""

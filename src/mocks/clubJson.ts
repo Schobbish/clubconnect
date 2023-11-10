@@ -91,7 +91,8 @@ export const clubJson: ClubJson = {
     categories: ["Cultural"],
     socials: {
       Instagram: "https://www.instagram.com/fsautd/",
-      Discord: "https://discord.gg/kzw2WQ5YGN"
+      Discord: "https://discord.gg/kzw2WQ5YGN",
+      Facebook: "https://www.facebook.com/groups/fsautd/"
     }
   },
 
