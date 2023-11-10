@@ -50,6 +50,19 @@ export const clubJson: ClubJson = {
     categories: ["Cultural"]
   },
 
+  "Asian Student Organization": {
+    acronym: "ASO",
+    president: "Tiana Pham",
+    description:
+      "The University of Texas at Dallas consists of one of the most diverse student populations in the state. We noticed students from smaller ethnic backgrounds join larger organizations because they do not have clubs representing their own culture. We welcome the idea of different lifestyles taking part in one another’s traditions, but we also want everyone to feel included. Our devotion to diversity and cultural inclusion is why we wanted to start the Asian Student Organization. ",
+    logo: "/images/aso_logo.png",
+    categories: ["Cultural"],
+    socials: {
+      Instagram: "https://www.instagram.com/utdaso/",
+      Discord: "https://discord.com/invite/uZA5TuNmNZ"
+    }
+  },
+
   "Association for Computing Machinery": {
     acronym: "ACM",
     president: "Jocelyn Heckenkamp",
