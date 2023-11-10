@@ -10,19 +10,15 @@ function getAllEvents(props: CalendarProps) {
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
       {weekOrder.map((dayOfWeek) => (
-        <div key={dayOfWeek} className="text-center h-[127.5px]">
-          <div className="font-bold">
-            {props.meetingSchedule[dayOfWeek]?.map((val) => val.name)}
-          </div>
-
-          {props.meetingSchedule[dayOfWeek]?.map(
-            (val) => "Starts: " + convertMinutesToTime(val.startTime)
-          )}
-          <br />
-
-          {props.meetingSchedule[dayOfWeek]?.map(
-            (val) => "Ends: " + convertMinutesToTime(val.endTime)
-          )}
+        <div key={dayOfWeek} className="text-center">
+          {props.meetingSchedule[dayOfWeek]?.map((val) => (
+            <div key={val.name} className="event pb-2">
+              <div className="font-bold">{val.name} </div>
+              <div className="underline">{val.clubName} </div>
+              <div>Start: {convertMinutesToTime(val.startTime)} </div>
+              <div>End: {convertMinutesToTime(val.endTime)} </div>
+            </div>
+          ))}
         </div>
       ))}
     </div>
