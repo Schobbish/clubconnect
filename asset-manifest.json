@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/clubconnect/static/css/main.de2c8a54.css",
-    "main.js": "/clubconnect/static/js/main.7f7fb7ea.js",
-    "static/js/685.ed2b0208.chunk.js": "/clubconnect/static/js/685.ed2b0208.chunk.js",
+    "main.js": "/clubconnect/static/js/main.ea27916a.js",
+    "static/js/685.e4bb63a1.chunk.js": "/clubconnect/static/js/685.e4bb63a1.chunk.js",
     "static/js/787.fa3c4679.chunk.js": "/clubconnect/static/js/787.fa3c4679.chunk.js",
     "static/js/813.5b5c9082.chunk.js": "/clubconnect/static/js/813.5b5c9082.chunk.js",
     "static/media/logo.png": "/clubconnect/static/media/logo.fbdee223f1540538c99b.png",
@@ -15,13 +15,13 @@
     "static/media/grid.svg": "/clubconnect/static/media/grid.9245de468cffe23d05c23ab30976e893.svg",
     "static/media/facebook.svg": "/clubconnect/static/media/facebook.4d4460260f64103d8da4a91d8e856d36.svg",
     "main.de2c8a54.css.map": "/clubconnect/static/css/main.de2c8a54.css.map",
-    "main.7f7fb7ea.js.map": "/clubconnect/static/js/main.7f7fb7ea.js.map",
-    "685.ed2b0208.chunk.js.map": "/clubconnect/static/js/685.ed2b0208.chunk.js.map",
+    "main.ea27916a.js.map": "/clubconnect/static/js/main.ea27916a.js.map",
+    "685.e4bb63a1.chunk.js.map": "/clubconnect/static/js/685.e4bb63a1.chunk.js.map",
     "787.fa3c4679.chunk.js.map": "/clubconnect/static/js/787.fa3c4679.chunk.js.map",
     "813.5b5c9082.chunk.js.map": "/clubconnect/static/js/813.5b5c9082.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.de2c8a54.css",
-    "static/js/main.7f7fb7ea.js"
+    "static/js/main.ea27916a.js"
   ]
 }
