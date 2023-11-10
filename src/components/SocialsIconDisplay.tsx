@@ -1,6 +1,6 @@
-import discordClyde from "../images/icon_clyde_black_RGB.svg";
-import instagramIcon from "../images/instagram.svg";
-import facebookIcon from "../images/facebook.svg";
+import discordClyde from "../images/social_icons/icon_clyde_black_RGB.svg";
+import instagramIcon from "../images/social_icons/instagram.svg";
+import facebookIcon from "../images/social_icons/facebook.svg";
 
 interface DisplayIconsProps {
   social: string;
