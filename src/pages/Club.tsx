@@ -6,6 +6,8 @@ import { ClubData, socialTypes } from "../models/clubTypes";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { inferLogoSource } from "../util/misc";
 import { DisplayIcons } from "../components/SocialsIconDisplay";
+import { Calendar } from "../components/Calendar";
+import { meetings } from "../mocks/meetings";
 
 export function Club() {
   const [clubData, setClubData] = useState<ClubData>();
@@ -23,7 +25,7 @@ export function Club() {
         setErrorMessage(getErrorMessage(err));
       });
   }, [name]);
-  //console.log(clubData?.socials?.["instagram"]);
+
   return (
     <MainLayout className="club" headline="Club Details" showBackButton>
       {errorMessage || isUndefined(clubData) ? (
@@ -55,10 +57,10 @@ export function Club() {
             </div>
           </div>
           {clubData.description}
+          <h1 className="py-5 text-center">Weekly Events</h1>
+          <Calendar meetingSchedule={meetings} clubName={clubData.name} />
         </div>
       )}
     </MainLayout>
   );
 }
-
-//clubData.socials?.[social]
