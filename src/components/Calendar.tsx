@@ -32,11 +32,25 @@ function getAllEvents(props: CalendarProps) {
 function getClubEvents(props: CalendarProps, clubName: string) {
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
+      {/*This goes through each day of the week */}
       {weekOrder.map((dayOfWeek) => (
         <div key={dayOfWeek} className="text-center h-[127.5px]">
-          {props.meetingSchedule[dayOfWeek]?.map((val) => (
-            <div key={val.clubName} className="font-bold">
-              {val.clubName === clubName ? val.name : " "}
+          {/*This goes through each event in the day of the week */}
+          {props.meetingSchedule[dayOfWeek]?.map((meetings) => (
+            <div key={meetings.clubName}>
+              <div className="font-bold event-name">
+                {meetings.clubName === clubName ? meetings.name : " "}
+              </div>
+              <div className="start-time">
+                {meetings.clubName === clubName
+                  ? "Start: " + convertMinutesToTime(meetings.startTime)
+                  : " "}
+              </div>
+              <div className="end-time">
+                {meetings.clubName === clubName
+                  ? "End: " + convertMinutesToTime(meetings.endTime)
+                  : " "}
+              </div>
             </div>
           ))}
         </div>
