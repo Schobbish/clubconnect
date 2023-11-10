@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export interface DialogProps {
   /** classes applied to body of dialog */
@@ -11,6 +11,7 @@ export interface DialogProps {
 }
 
 export function Dialog(props: DialogProps) {
+  // close on escape
   const handleKeyDown = (ev: KeyboardEvent) => {
     if (ev.key === "Escape") props.onClose();
   };
@@ -23,16 +24,34 @@ export function Dialog(props: DialogProps) {
   }, []);
 
   // disable body scrolling when open (try to)
-  // https://www.reddit.com/r/nextjs/comments/1312tna/comment/jhyhyu7/
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const stopScrolling = (e: WheelEvent | TouchEvent) => {
+    if (
+      // check if dialog does not need to be scrolled
+      // n.b. this only monitors the dialog-body div so scrolling
+      //     of children will still be disabled
+      (bodyRef.current?.scrollHeight === bodyRef.current?.clientHeight &&
+        bodyRef.current?.scrollWidth === bodyRef.current?.clientWidth) ||
+      // if it does, check if dialog is not targeted
+      // (overscroll-contain will then stop scrolling of body)
+      (e.target instanceof Node && !bodyRef.current?.contains(e.target))
+    ) {
+      e.preventDefault();
+    }
+  };
+
   useEffect(() => {
     if (props.open) {
-      document.body.classList.add("overflow-y-hidden");
+      document.addEventListener("wheel", stopScrolling, { passive: false });
+      document.addEventListener("touchmove", stopScrolling, { passive: false });
     } else {
-      document.body.classList.remove("overflow-y-hidden");
+      document.removeEventListener("wheel", stopScrolling);
+      document.removeEventListener("touchmove", stopScrolling);
     }
 
     return () => {
-      document.body.classList.remove("overflow-y-hidden");
+      document.removeEventListener("wheel", stopScrolling);
+      document.removeEventListener("touchmove", stopScrolling);
     };
   }, [props.open]);
 
@@ -45,10 +64,11 @@ export function Dialog(props: DialogProps) {
       >
         <div
           className={
-            "dialog-body overflow-y-scroll p-2 max-h-full text-base font-normal text-left bg-gray border-2 " +
+            "dialog-body overflow-auto p-2 max-h-full text-base font-normal text-left bg-gray border-2 overscroll-contain " +
             props.className
           }
           onClick={(e) => e.stopPropagation()}
+          ref={bodyRef}
         >
           {props.children}
         </div>
