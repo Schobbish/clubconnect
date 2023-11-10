@@ -41,8 +41,8 @@ export function Club() {
             <div className="mt-2 md:mt-auto max-w-2xl md:pl-2">
               <h1 className="mb-2">{name}</h1>
               <div className="club-socials-container">
-                <div className="club-socials-title font-semibold text-xl border-b-2">
-                  Socials
+                <div className="club-socials-title border-b-2 w-1/2">
+                  <h4>Socials</h4>
                 </div>
                 <div className="flex flex-wrap pt-2">
                   {socialTypes.map((social) => (
@@ -57,7 +57,7 @@ export function Club() {
             </div>
           </div>
           {clubData.description}
-          <h1 className="py-5 text-center">Weekly Events</h1>
+          <h3 className="pt-5 text-center">Weekly Events</h3>
           <Calendar meetingSchedule={meetings} clubName={clubData.name} />
         </div>
       )}
