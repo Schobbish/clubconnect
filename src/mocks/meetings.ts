@@ -9,6 +9,12 @@ export const meetings: MeetingSchedule = {
       clubName: "Filipino Student Association",
       startTime: 1170,
       endTime: 1290
+    },
+    {
+      name: "General Meeting",
+      clubName: "Vietnamese Student Association",
+      startTime: 1170,
+      endTime: 1290
     }
   ],
   Wednesday: [],
