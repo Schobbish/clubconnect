@@ -45,7 +45,7 @@ export const clubJson: ClubJson = {
     acronym: "",
     president: "Edward Moreno & Jacob Rush II",
     description:
-      "To support afro-textured hair, so everyone can be comfortable with the hair they were born with. As well as supporting our communities.",
+      "To support afro-textured hair, so everyone can be comfortable with the hair they were born with. As well as supporting our communities & socializing with others to spread awareness. Although it’s called the Afro Hair Association, we are not going be just be about hair. We intend to use the organization as a way to help those in need, clean the community, uplift the community through supporting one another, and remove the stigma surrounding Afro-textured hair in the workplace and schools.",
     logo: "/images/afro_logo.png",
     categories: ["Cultural"]
   },
