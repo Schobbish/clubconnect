@@ -32,11 +32,11 @@ export function Club() {
         <div>
           <div className="my-4 md:flex">
             <img
-              className="rounded-xl max-w-xs pr-2 w-full"
+              className="rounded-xl max-w-xs w-full"
               src={inferLogoSource(clubData.logo)}
               alt={name + " logo"}
             />
-            <div className="mt-2 md:mt-auto max-w-2xl">
+            <div className="mt-2 md:mt-auto max-w-2xl pl-2">
               <h1 className="mb-2">{name}</h1>
               <div className="club-socials-container">
                 <div className="club-socials-title font-semibold text-xl border-b-2">
