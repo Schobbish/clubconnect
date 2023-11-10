@@ -1,5 +1,6 @@
 export interface Meeting {
   name: string;
+  clubName: string;
   startTime: number;
   endTime: number;
 }
