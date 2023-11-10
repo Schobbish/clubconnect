@@ -25,7 +25,10 @@ export const socialTypes = [
   "Instagram",
   "Facebook",
   "Discord",
-  "Twitter"
+  "Twitter",
+  "Tiktok",
+  "LinkedIn",
+  "Website"
 ] as const;
 type Socials = (typeof socialTypes)[number];
 
