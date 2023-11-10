@@ -1,40 +1,31 @@
 import { MeetingSchedule } from "../models/meetingTypes";
 
 export const meetings: MeetingSchedule = {
-  Sunday: [
+  Sunday: [],
+  Monday: [],
+  Tuesday: [
     {
-      name: "blah blah",
+      name: "General Meeting",
+      clubName: "Filipino Student Association",
       startTime: 1170,
-      endTime: 1260
+      endTime: 1290
     }
   ],
-  Monday: [
-    {
-      name: "yurt",
-      startTime: 1170,
-      endTime: 1260
-    }
-  ],
-  Tuesday: [],
-  Wednesday: [
-    {
-      name: "blah blah",
-      startTime: 970,
-      endTime: 1260
-    }
-  ],
+  Wednesday: [],
   Thursday: [
     {
-      name: "blah blah",
-      startTime: 170,
-      endTime: 1260
+      name: "General Meeting",
+      clubName: "Vietnamese Student Association",
+      startTime: 1170,
+      endTime: 1290
     }
   ],
   Friday: [
     {
-      name: "blah",
-      startTime: 1010,
-      endTime: 1260
+      name: "General Meeting",
+      clubName: "Filipino Student Association",
+      startTime: 1170,
+      endTime: 1290
     }
   ],
   Saturday: []
