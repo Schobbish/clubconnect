@@ -13,7 +13,12 @@ export function DisplayIcons(props: DisplayIconsProps) {
       {props.socialsLink ? (
         <div className="social-icons flex flex-wrap">
           {props.social === "Instagram" ? (
-            <a className="px-1" href={props.socialsLink}>
+            <a
+              className="px-1"
+              href={props.socialsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img className="h-[24px]" src={instagramIcon} />
             </a>
           ) : (
@@ -21,7 +26,11 @@ export function DisplayIcons(props: DisplayIconsProps) {
           )}
 
           {props.social === "Discord" ? (
-            <a href={props.socialsLink}>
+            <a
+              href={props.socialsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img className="h-[24px] px-1" src={discordClyde} />
             </a>
           ) : (
@@ -29,7 +38,11 @@ export function DisplayIcons(props: DisplayIconsProps) {
           )}
 
           {props.social === "Facebook" ? (
-            <a href={props.socialsLink}>
+            <a
+              href={props.socialsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img className="h-[24px] px-1" src={facebookIcon} />
             </a>
           ) : (
