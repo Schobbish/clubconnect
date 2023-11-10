@@ -173,7 +173,8 @@ export const clubJson: ClubJson = {
     socials: {
       Instagram: "https://www.instagram.com/utdvsa/",
       Discord: "https://discord.com/invite/xfDD9fu",
-      Facebook: "https://www.facebook.com/utdvsa/"
+      Facebook: "https://www.facebook.com/utdvsa/",
+      LinkedIn: "https://www.linkedin.com/company/utdvsa/about/"
     }
   }
 };
