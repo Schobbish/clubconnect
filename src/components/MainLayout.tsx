@@ -1,3 +1,4 @@
+import { ScrollRestoration } from "react-router-dom";
 import { NavBar } from "./NavBar";
 import { Sidebar } from "./Sidebar";
 import { ViewStyleSwitcher } from "./ViewStyleSwitcher";
@@ -16,6 +17,7 @@ export interface MainLayoutProps {
 export function MainLayout(props: MainLayoutProps) {
   return (
     <div className={props.className}>
+      <ScrollRestoration />
       <NavBar />
       <div className="w-full bg-orange-200">
         <div className="px-2 mx-auto max-w-5xl w-full flex flex-row-reverse">
