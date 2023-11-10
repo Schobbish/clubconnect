@@ -10,8 +10,8 @@ export function App() {
   return (
     <ViewStyle.Provider value={viewStyleState}>
       <CategoryFilter.Provider value={categoryFilterState}>
-        <ScrollRestoration />
         <Outlet />
+        <ScrollRestoration />
       </CategoryFilter.Provider>
     </ViewStyle.Provider>
   );
