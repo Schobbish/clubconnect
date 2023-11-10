@@ -2,9 +2,10 @@ import { defaultTo, isUndefined } from "lodash-es";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MainLayout } from "../components/MainLayout";
-import { ClubData } from "../models/clubTypes";
+import { ClubData, socialTypes } from "../models/clubTypes";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { inferLogoSource } from "../util/misc";
+import { DisplayIcons } from "../components/SocialsIconDisplay";
 
 export function Club() {
   const [clubData, setClubData] = useState<ClubData>();
@@ -22,7 +23,7 @@ export function Club() {
         setErrorMessage(getErrorMessage(err));
       });
   }, [name]);
-
+  //console.log(clubData?.socials?.["instagram"]);
   return (
     <MainLayout className="club" headline="Club Details" showBackButton>
       {errorMessage || isUndefined(clubData) ? (
@@ -37,10 +38,19 @@ export function Club() {
             />
             <div className="mt-2 md:mt-auto max-w-2xl">
               <h1 className="mb-2">{name}</h1>
-              This will contain the club information including meeting times
-              <div className="club-contact-info-container">
-                This is where all the emails and socials should be contained
-                (maybe some icons)
+              <div className="club-socials-container">
+                <div className="club-socials-title font-semibold text-xl border-b-2">
+                  Socials
+                </div>
+                <div className="flex flex-wrap pt-2">
+                  {socialTypes.map((social) => (
+                    <DisplayIcons
+                      key={social}
+                      social={social}
+                      socialsLink={clubData.socials?.[social]}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -50,3 +60,5 @@ export function Club() {
     </MainLayout>
   );
 }
+
+//clubData.socials?.[social]

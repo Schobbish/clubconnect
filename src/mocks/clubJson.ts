@@ -88,7 +88,11 @@ export const clubJson: ClubJson = {
     description:
       "The purpose of UTD FSA is to unite students who are interested in promoting the Filipino-American culture and to share, display, and preserve the Filipino-American culture as an organization. UTD FSA engages in cultural-based and social activites and is involved in philanthropic endeavors as well. Apart for that, UTD FSA offers community acitivites and oppurtunites including competeitive and non-competitive sports and dance teams.",
     logo: "/images/fsa_logo.jpg",
-    categories: ["Cultural"]
+    categories: ["Cultural"],
+    socials: {
+      Instagram: "https://www.instagram.com/fsautd/",
+      Discord: "https://discord.gg/kzw2WQ5YGN"
+    }
   },
 
   "Society of Asian Scientists and Engineers": {

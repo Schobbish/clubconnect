@@ -4,6 +4,7 @@ interface ClubFields {
   description: string;
   logo: string;
   categories: string[];
+  socials?: { [key: string]: string };
 }
 type ClubName = string;
 
@@ -19,3 +20,13 @@ export interface ClubData extends ClubFields {
 export interface ClubJson {
   [name: ClubName]: ClubFields;
 }
+
+export const socialTypes = [
+  "Instagram",
+  "Facebook",
+  "Discord",
+  "Twitter"
+] as const;
+type Socials = (typeof socialTypes)[number];
+
+export type SocialsList = { [Social in Socials]?: ClubFields["socials"] };
