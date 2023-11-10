@@ -1,3 +1,4 @@
+import * as DateFns from "date-fns";
 import { isUndefined } from "lodash-es";
 import defaultLogo from "../images/Default Logo.png";
 import { ClubData, ClubJson } from "../models/clubTypes";
@@ -26,16 +27,7 @@ export function createClubList(
   });
 }
 
-/**
- * Converts the time in minutes into clock time
- */
-export function convertMinutesToTime(minutesTime: number) {
-  const meridiem = Math.floor(minutesTime / 60) > 12 ? "PM" : "AM";
-  const hours =
-    Math.floor(minutesTime / 60) > 12
-      ? Math.floor(minutesTime / 60) - 12
-      : Math.floor(minutesTime / 60);
-  const minutes = minutesTime % 60 == 0 ? "00" : minutesTime % 60;
-
-  return hours + ":" + minutes + meridiem;
+/** Converts a string in 24 hour time to one in 12 hour time */
+export function convert24HourTime(time: string) {
+  return DateFns.format(DateFns.parse(time, "HH:mm", new Date(0)), "h:mma");
 }

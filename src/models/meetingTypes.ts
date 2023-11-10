@@ -1,8 +1,10 @@
 export interface Meeting {
   name: string;
   clubName: string;
-  startTime: number;
-  endTime: number;
+  /** meeting start time in 24-hour format HH:mm with leading zeros */
+  startTime: string;
+  /** meeting end time in 24-hour format HH:mm with leading zeros */
+  endTime: string;
 }
 
 export const weekOrder = [
@@ -14,6 +16,6 @@ export const weekOrder = [
   "Friday",
   "Saturday"
 ] as const;
-type DayOfWeek = (typeof weekOrder)[number];
+export type DayOfWeek = (typeof weekOrder)[number];
 
 export type MeetingSchedule = { [Day in DayOfWeek]?: Meeting[] };

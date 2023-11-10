@@ -1,5 +1,5 @@
-import { weekOrder, MeetingSchedule } from "../models/meetingTypes";
-import { convertMinutesToTime } from "../util/misc";
+import { MeetingSchedule, weekOrder } from "../models/meetingTypes";
+import { convert24HourTime } from "../util/misc";
 
 interface CalendarProps {
   meetingSchedule: MeetingSchedule;
@@ -15,8 +15,8 @@ function getAllEvents(props: CalendarProps) {
             <div key={val.name} className="event pb-2">
               <div className="font-bold">{val.name} </div>
               <div className="underline">{val.clubName} </div>
-              <div>Start: {convertMinutesToTime(val.startTime)} </div>
-              <div>End: {convertMinutesToTime(val.endTime)} </div>
+              <div>Start: {convert24HourTime(val.startTime)} </div>
+              <div>End: {convert24HourTime(val.endTime)} </div>
             </div>
           ))}
         </div>
@@ -32,23 +32,21 @@ function getClubEvents(props: CalendarProps, clubName: string) {
       {weekOrder.map((dayOfWeek) => (
         <div key={dayOfWeek} className="text-center h-[127.5px]">
           {/*This goes through each event in the day of the week */}
-          {props.meetingSchedule[dayOfWeek]?.map((meetings) => (
-            <div key={meetings.clubName}>
-              <div className="font-bold event-name overflow-clip">
-                {meetings.clubName === clubName ? meetings.name : " "}
+          {props.meetingSchedule[dayOfWeek]
+            ?.filter((meeting) => meeting.clubName === clubName)
+            .map((meeting) => (
+              <div key={meeting.clubName}>
+                <div className="font-bold event-name overflow-clip">
+                  {meeting.name}
+                </div>
+                <div className="start-time overflow-clip">
+                  {"Start: " + convert24HourTime(meeting.startTime)}
+                </div>
+                <div className="end-time overflow-clip">
+                  {"End: " + convert24HourTime(meeting.endTime)}
+                </div>
               </div>
-              <div className="start-time overflow-clip">
-                {meetings.clubName === clubName
-                  ? "Start: " + convertMinutesToTime(meetings.startTime)
-                  : " "}
-              </div>
-              <div className="end-time overflow-clip">
-                {meetings.clubName === clubName
-                  ? "End: " + convertMinutesToTime(meetings.endTime)
-                  : " "}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       ))}
     </div>
