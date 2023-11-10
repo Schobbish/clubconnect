@@ -7,7 +7,14 @@ export const clubJson: ClubJson = {
     description:
       "Our mission is to increase access to prosthetic technologies and care. We emphasize serving populations who do not have access to care through other avenues. API tackles this goal in a holistic manner through community outreach, accessible device design, and educational initiatives.",
     logo: "/images/API_logo.png",
-    categories: ["Academic"]
+    categories: ["Academic"],
+    socials: {
+      Instagram: "https://www.instagram.com/api.utd/",
+      Facebook: "https://www.facebook.com/apiprosthetics",
+      LinkedIn:
+        "https://www.linkedin.com/company/accessible-prosthetics-initiative-the-ut-dallas-chapter/",
+      Website: "https://utdapi.com/"
+    }
   },
 
   "Actuarial Student Association": {
@@ -16,7 +23,13 @@ export const clubJson: ClubJson = {
     description:
       "The ASA is an educational organization dedicated to students interested in pursuing a career in actuarial science with the purpose of preparing students for their future career by supporting exam progression and promoting professional development through leadership opportunities, mentorship, and networking.",
     logo: "/images/asa_logo.png",
-    categories: ["Academic"]
+    categories: ["Academic"],
+    socials: {
+      Instagram: "https://www.instagram.com/utdasa/",
+      Facebook: "https://www.facebook.com/ASAofUTD/",
+      Discord: "https://discord.com/invite/8kz56DqfB5",
+      Website: "https://utdasa.wixsite.com/asa-utd"
+    }
   },
 
   "Advancements in Modern Medicine": {
@@ -43,7 +56,14 @@ export const clubJson: ClubJson = {
     description:
       "We're a team of students with one goal: building a greater, more collaborative computing community at The University of Texas at Dallas. We offer several semester-long programs to help UTD students hone their computer science skills including Projects, Research, Mentor Program, and Technical Interview Prep (TIP).",
     logo: "/images/acm_logo.jpg",
-    categories: ["Academic"]
+    categories: ["Academic"],
+    socials: {
+      Instagram: "https://www.instagram.com/acmutd/",
+      Discord: "https://discord.com/invite/kWP6gBv",
+      Facebook: "https://www.facebook.com/acmatutd",
+      LinkedIn: "https://www.linkedin.com/company/acmutd/",
+      Website: "https://acmutd.co/"
+    }
   },
 
   "Chess Club UT Dallas": {
@@ -52,7 +72,12 @@ export const clubJson: ClubJson = {
     description:
       "UT Dallas Chess Club is a place where you can meet every week to improve your chess skills, attend tournaments and events, participate in grandmaster lessons and simuls, or just play a game of chess with your friend",
     logo: "/images/chess_logo.png",
-    categories: ["Sport"]
+    categories: ["Sport"],
+    socials: {
+      Instagram: "https://www.instagram.com/utdchess/",
+      Facebook: "https://www.facebook.com/utdchess/",
+      Discord: "https://discord.com/invite/C9YysGN2AD"
+    }
   },
 
   "Chinese Student Association": {
@@ -61,7 +86,13 @@ export const clubJson: ClubJson = {
     description:
       "We are a Chinese cultural and social club at UT Dallas that provides our members the opportunity to learn more about Chinese customs and language. We are welcoming of all people, as long as you're willing to make friends and learn about Chinese culture!",
     logo: "/images/CSA_logo.png",
-    categories: ["Cultural"]
+    categories: ["Cultural"],
+    socials: {
+      Instagram: "https://www.instagram.com/utdcsa/",
+      Facebook: "https://www.facebook.com/utdcsa/",
+      Discord: "https://discord.com/invite/s6MQyjaSnA",
+      Twitter: "https://twitter.com/utdcsa"
+    }
   },
 
   "Comet Comedy": {
@@ -70,7 +101,11 @@ export const clubJson: ClubJson = {
     description:
       "With its politically-infused messages, cringeworthy childhood stories, and hilarious skits, Comet Comedy seeks to give you a much-needed break from schoolwork and an opportunity to perform stand up comedy",
     logo: "/images/CC_logo.png",
-    categories: ["Arts"]
+    categories: ["Arts"],
+    socials: {
+      Instagram: "https://www.instagram.com/utdcomedy/",
+      Discord: "https://discord.com/invite/UPttbsWK5D"
+    }
   },
 
   "Cybersecurity Club": {
@@ -79,7 +114,13 @@ export const clubJson: ClubJson = {
     description:
       "Cybersecurity Club is a student organization that strives to spread awareness and promote knowledge about Information technology Security, a niche but vast field of study from management perspective.",
     logo: "/images/cyber_logo.png",
-    categories: ["Academic"]
+    categories: ["Academic"],
+    socials: {
+      Instagram: "https://www.instagram.com/cscutd/",
+      Facebook: "https://www.facebook.com/CSCutd",
+      LinkedIn: "https://www.linkedin.com/in/cscutd/",
+      Twitter: "https://twitter.com/cscutd/"
+    }
   },
 
   "Filipino Student Association": {
@@ -102,7 +143,11 @@ export const clubJson: ClubJson = {
     description:
       "SASE UT Dallas is both a social organization and a professional development organization that aims to support the advancement of Asian heritage scientists and engineers",
     logo: "/images/SASE_UTD_logo.png",
-    categories: ["Academic", "Cultural"]
+    categories: ["Academic", "Cultural"],
+    socials: {
+      Instagram: "https://www.instagram.com/sase.utd/",
+      Discord: "https://discord.com/invite/xzRkND3qfK"
+    }
   },
 
   "Vietnamese Student Association": {
@@ -111,6 +156,11 @@ export const clubJson: ClubJson = {
     description:
       "The purpose of VSA-UTD shall be to create a safe environment in which a strong, cohesive network of friends and family can be built while participating in university functions, taking part in philanthropic activities, and promoting awareness and appreciation of Vietnamese culture. ",
     logo: "/images/vsa_logo.png",
-    categories: ["Cultural"]
+    categories: ["Cultural"],
+    socials: {
+      Instagram: "https://www.instagram.com/utdvsa/",
+      Discord: "https://discord.com/invite/xfDD9fu",
+      Facebook: "https://www.facebook.com/utdvsa/"
+    }
   }
 };
