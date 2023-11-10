@@ -10,8 +10,10 @@
     background: linear-gradient(
       to top,
       theme("colors.green"),
-      theme("colors.green") 50%,
-      theme("colors.gray") 50%,
+      theme("colors.green") theme("height.16"),
+      theme("colors.orange.200") theme("height.16"),
+      theme("colors.orange.200") calc(100vh - theme("height.16")),
+      theme("colors.gray") calc(100vh - theme("height.16")),
       theme("colors.gray")
     );
     @apply bg-fixed;
