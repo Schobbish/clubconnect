@@ -1,5 +1,7 @@
 import { MeetingSchedule, weekOrder } from "../models/meetingTypes";
 import { convert24HourTime } from "../util/misc";
+import { ScheduleFilter } from "./ScheduleDialog";
+import { useContext } from "react";
 
 interface CalendarProps {
   meetingSchedule: MeetingSchedule;
@@ -63,7 +65,10 @@ function getClubEvents(props: CalendarProps, clubName: string) {
 }
 
 export function Calendar(props: CalendarProps) {
+  //Filtering if an events starts within a time frame?
   sortMeetingSchedules(props);
+  const scheduleFilter = useContext(ScheduleFilter)[0];
+  console.log(scheduleFilter);
   return (
     <div className="calendar-outer border-2">
       <div className="calendar-daysOfWeek border-b-2 grid grid-cols-7 divide-x">
