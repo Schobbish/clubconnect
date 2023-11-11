@@ -18,7 +18,7 @@ export function Home() {
             ? categoryFilter.filter.join(",")
             : "",
           shuffle: true,
-          limit: 6
+          limit: 8
         }
       })
       .then((res) => {

@@ -1,3 +1,4 @@
+import { Link, createSearchParams } from "react-router-dom";
 import { MeetingSchedule, weekOrder } from "../models/meetingTypes";
 import { convert24HourTime } from "../util/misc";
 
@@ -23,7 +24,13 @@ function getAllEvents(props: CalendarProps) {
           {props.meetingSchedule[dayOfWeek]?.map((val) => (
             <div key={val.clubName + val.name} className="event pb-2">
               <div className="font-bold">{val.name} </div>
-              <div className="underline">{val.clubName} </div>
+              <div className="underline">
+                <Link
+                  to={"/club?" + createSearchParams({ name: val.clubName })}
+                >
+                  {val.clubName}
+                </Link>
+              </div>
               <div>Start: {convert24HourTime(val.startTime)} </div>
               <div>End: {convert24HourTime(val.endTime)} </div>
             </div>
@@ -44,9 +51,9 @@ function getClubEvents(props: CalendarProps, clubName: string) {
           {props.meetingSchedule[dayOfWeek]
             ?.filter((meeting) => meeting.clubName === clubName)
             .map((meeting) => (
-              <div key={meeting.clubName}>
+              <div key={meeting.name}>
                 <div className="font-bold event-name overflow-clip">
-                  {meeting.clubName + meeting.name}
+                  {meeting.name}
                 </div>
                 <div className="start-time overflow-clip">
                   {"Start: " + convert24HourTime(meeting.startTime)}

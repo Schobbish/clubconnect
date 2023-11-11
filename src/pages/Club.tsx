@@ -72,7 +72,7 @@ export function Club() {
           {meetingErrorMessage || isUndefined(meetingData) ? (
             <span className="api-error">{meetingErrorMessage}</span>
           ) : (
-            <Calendar meetingSchedule={meetingData} />
+            <Calendar meetingSchedule={meetingData} clubName={name} />
           )}
         </div>
       )}
