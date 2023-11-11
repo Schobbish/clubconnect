@@ -49,21 +49,19 @@ const initialMeetingValue: ScheduleFormValues["schedule"][number] = {
 
 const scheduleSchema = Yup.object().shape({
   enabled: Yup.boolean().required(),
-  schedule: Yup.array()
-    .required()
-    .of(
-      Yup.object().shape({
-        day: Yup.string().required("Day must be selected"),
-        startTime: Yup.string().required("Start time is required"),
-        endTime: Yup.string()
-          .required("End time is required")
-          .test(
-            "end-after-start",
-            "Must end after it begins",
-            (value, testContext) => testContext.parent.startTime <= value
-          )
-      })
-    )
+  schedule: Yup.array().of(
+    Yup.object().shape({
+      day: Yup.string().required("Day must be selected"),
+      startTime: Yup.string().required("Start time is required"),
+      endTime: Yup.string()
+        .required("End time is required")
+        .test(
+          "end-after-start",
+          "Must end after it begins",
+          (value, testContext) => testContext.parent.startTime <= value
+        )
+    })
+  )
 });
 
 function contextToFormValues(
@@ -169,19 +167,17 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                             as={TimeField}
                           />
                         </label>
-                        {form.values.schedule.length > 1 && (
-                          <button
-                            className="pr-2.5"
-                            type="button"
-                            onClick={() => fieldArray.remove(i)}
-                          >
-                            <img
-                              className="min-w-[12px] min-h-[12px]"
-                              src={removeIcon}
-                              alt="Remove icon"
-                            />
-                          </button>
-                        )}
+                        <button
+                          className="pr-2.5"
+                          type="button"
+                          onClick={() => fieldArray.remove(i)}
+                        >
+                          <img
+                            className="min-w-[12px] min-h-[12px]"
+                            src={removeIcon}
+                            alt="Remove icon"
+                          />
+                        </button>
                       </div>
                       <div className="errors text-red pl-4 text-xs leading-tight">
                         <ErrorMessage
@@ -204,7 +200,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                     type="button"
                     onClick={() => fieldArray.push(initialMeetingValue)}
                   >
-                    <img src={addIcon} alt="Remove icon" />
+                    <img src={addIcon} alt="Add icon" />
                   </button>
                 </div>
               )}
