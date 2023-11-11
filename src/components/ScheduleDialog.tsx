@@ -6,7 +6,7 @@ import {
   Form,
   Formik
 } from "formik";
-import { defaultTo, isUndefined, noop } from "lodash-es";
+import { defaultTo, noop } from "lodash-es";
 import { createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -60,8 +60,7 @@ const scheduleSchema = Yup.object().shape({
           .test(
             "end-after-start",
             "Must end after it begins",
-            (value, testContext) =>
-              !isUndefined(value) && testContext.parent.startTime <= value
+            (value, testContext) => testContext.parent.startTime <= value
           )
       })
     )
