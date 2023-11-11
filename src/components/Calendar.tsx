@@ -6,6 +6,15 @@ interface CalendarProps {
   clubName?: string;
 }
 
+function sortMeetingSchedules(props: CalendarProps) {
+  //Sorts the meeting schedule
+  weekOrder.map((dayOfWeek) =>
+    props.meetingSchedule[dayOfWeek]?.sort((a, b) => {
+      return a.startTime.localeCompare(b.startTime);
+    })
+  );
+}
+
 function getAllEvents(props: CalendarProps) {
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
@@ -54,6 +63,7 @@ function getClubEvents(props: CalendarProps, clubName: string) {
 }
 
 export function Calendar(props: CalendarProps) {
+  sortMeetingSchedules(props);
   return (
     <div className="calendar-outer border-2">
       <div className="calendar-daysOfWeek border-b-2 grid grid-cols-7 divide-x">

@@ -13,8 +13,14 @@ export const meetings: MeetingSchedule = {
     {
       name: "General Meeting",
       clubName: "Vietnamese Student Association",
-      startTime: "19:30",
-      endTime: "21:30"
+      startTime: "14:30",
+      endTime: "17:30"
+    },
+    {
+      name: "General Meeting",
+      clubName: "Asian Student Organization",
+      startTime: "16:00",
+      endTime: "18:30"
     }
   ],
   Wednesday: [],
