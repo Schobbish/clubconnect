@@ -6,9 +6,8 @@ import {
   useNavigate,
   useSearchParams
 } from "react-router-dom";
-import calendarIcon from "../images/calendar.svg";
 import logo from "../images/logo.png";
-import searchIcon from "../images/search.svg";
+import search from "../images/search.svg";
 
 interface SearchFormValues {
   query: string;
@@ -39,27 +38,19 @@ export function NavBar() {
             }}
           >
             <Form>
-              <div className="flex gap-2">
-                <div className="flex border">
-                  <Field
-                    className="p-1 w-52"
-                    id="query"
-                    name="query"
-                    placeholder="Search"
+              <div className="flex border">
+                <Field
+                  className="p-1 w-52"
+                  id="query"
+                  name="query"
+                  placeholder="Search"
+                />
+                <button type="submit">
+                  <img
+                    className="p-1 bg-white border border-r-0 border-y-0"
+                    src={search}
+                    alt="search icon"
                   />
-                  <button type="submit">
-                    <img
-                      className="p-1 bg-white border border-r-0 border-y-0"
-                      src={searchIcon}
-                      alt="search icon"
-                    />
-                  </button>
-                </div>
-                <button
-                  className="flex border"
-                  onClick={() => navigate("/calendar")}
-                >
-                  <img src={calendarIcon} alt="calendar icon" />
                 </button>
               </div>
             </Form>
