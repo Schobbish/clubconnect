@@ -1,7 +1,5 @@
 import { MeetingSchedule, weekOrder } from "../models/meetingTypes";
 import { convert24HourTime } from "../util/misc";
-import { ScheduleFilter } from "./ScheduleDialog";
-import { useContext } from "react";
 
 interface CalendarProps {
   meetingSchedule: MeetingSchedule;
@@ -23,7 +21,7 @@ function getAllEvents(props: CalendarProps) {
       {weekOrder.map((dayOfWeek) => (
         <div key={dayOfWeek} className="text-center">
           {props.meetingSchedule[dayOfWeek]?.map((val) => (
-            <div key={val.name} className="event pb-2">
+            <div key={val.clubName + val.name} className="event pb-2">
               <div className="font-bold">{val.name} </div>
               <div className="underline">{val.clubName} </div>
               <div>Start: {convert24HourTime(val.startTime)} </div>
@@ -48,7 +46,7 @@ function getClubEvents(props: CalendarProps, clubName: string) {
             .map((meeting) => (
               <div key={meeting.clubName}>
                 <div className="font-bold event-name overflow-clip">
-                  {meeting.name}
+                  {meeting.clubName + meeting.name}
                 </div>
                 <div className="start-time overflow-clip">
                   {"Start: " + convert24HourTime(meeting.startTime)}
@@ -65,10 +63,7 @@ function getClubEvents(props: CalendarProps, clubName: string) {
 }
 
 export function Calendar(props: CalendarProps) {
-  //Filtering if an events starts within a time frame?
   sortMeetingSchedules(props);
-  const scheduleFilter = useContext(ScheduleFilter)[0];
-  console.log(scheduleFilter);
   return (
     <div className="calendar-outer border-2">
       <div className="calendar-daysOfWeek border-b-2 grid grid-cols-7 divide-x">

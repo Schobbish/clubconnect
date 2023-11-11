@@ -136,8 +136,8 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
               {(fieldArray) => (
                 <div className="min-h-[16rem]">
                   {form.values.schedule.map((val, i) => (
-                    <>
-                      <div className="flex whitespace-nowrap my-1" key={i}>
+                    <div key={i}>
+                      <div className="flex whitespace-nowrap my-1">
                         <label className="flex">
                           Day:
                           <Field
@@ -197,7 +197,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                           component="p"
                         />
                       </div>
-                    </>
+                    </div>
                   ))}
                   <button
                     className="block mx-auto my-4"

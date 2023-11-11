@@ -34,7 +34,6 @@ export const searchMeetings = rest.post(
           );
           if (categoriesParam.length !== 0) {
             const categories = categoriesParam.split(",");
-            console.log(categories);
             allowedClubNames = allowedClubNames.filter((clubName) => {
               categories
                 .map((val) => clubJson[clubName].categories.includes(val))
@@ -42,7 +41,6 @@ export const searchMeetings = rest.post(
             });
           }
         }
-        console.log(body);
 
         const schedule: MeetingSchedule = {};
         for (const day of weekOrder) {
@@ -55,7 +53,6 @@ export const searchMeetings = rest.post(
               // check if meeting is outside any blocks
               !defaultTo(body[day], [])
                 .map((block) => {
-                  console.log(meeting, block);
                   return (
                     meeting.endTime <= block.startTime ||
                     meeting.startTime >= block.endTime
