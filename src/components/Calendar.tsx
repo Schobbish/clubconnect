@@ -8,6 +8,7 @@ interface CalendarProps {
 }
 
 //This is here as the name entials, to avoid jumping through too many hoops to get the acronym from the club json (thought it was easier to do it this way)
+//Does not work as fully intended with clubs that have UT Dallas or UTD in the name or special characters
 function convertToAcronynm(clubName: string) {
   return clubName
     .split(/\s/)
