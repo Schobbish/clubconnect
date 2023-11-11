@@ -152,7 +152,7 @@ export const clubJson: ClubJson = {
     description:
       "With its politically-infused messages, cringeworthy childhood stories, and hilarious skits, Comet Comedy seeks to give you a much-needed break from schoolwork and an opportunity to perform stand up comedy",
     logo: "/images/CC_logo.png",
-    categories: ["Arts"],
+    categories: ["Art"],
     socials: {
       Instagram: "https://www.instagram.com/utdcomedy/",
       Discord: "https://discord.com/invite/UPttbsWK5D"
