@@ -7,6 +7,14 @@ interface CalendarProps {
   clubName?: string;
 }
 
+//This is here as the name entials, to avoid jumping through too many hoops to get the acronym from the club json (thought it was easier to do it this way)
+function convertToAcronynm(clubName: string) {
+  return clubName
+    .split(/\s/)
+    .reduce((response, word) => (response += word.slice(0, 1)), "")
+    .replace(/[^A-Z]/g, "");
+}
+
 function sortMeetingSchedules(props: CalendarProps) {
   //Sorts the meeting schedule
   weekOrder.map((dayOfWeek) =>
@@ -20,7 +28,7 @@ function getAllEvents(props: CalendarProps) {
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
       {weekOrder.map((dayOfWeek) => (
-        <div key={dayOfWeek} className="text-center">
+        <div key={dayOfWeek} className="text-center px-2">
           {props.meetingSchedule[dayOfWeek]?.map((val) => (
             <div key={val.clubName + val.name} className="event pb-2">
               <div className="font-bold">{val.name} </div>
@@ -28,7 +36,9 @@ function getAllEvents(props: CalendarProps) {
                 <Link
                   to={"/club?" + createSearchParams({ name: val.clubName })}
                 >
-                  {val.clubName}
+                  {convertToAcronynm(val.clubName).length >= 3
+                    ? convertToAcronynm(val.clubName)
+                    : val.clubName}
                 </Link>
               </div>
               <div>Start: {convert24HourTime(val.startTime)} </div>
