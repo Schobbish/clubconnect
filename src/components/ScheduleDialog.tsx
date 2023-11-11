@@ -1,11 +1,4 @@
-import {
-  ErrorMessage,
-  Field,
-  FieldArray,
-  FieldProps,
-  Form,
-  Formik
-} from "formik";
+import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
 import { defaultTo, noop } from "lodash-es";
 import { createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +16,7 @@ export interface ScheduleFilterContext {
   schedule: MeetingSchedule;
 }
 export const initalScheduleFilterValue: ScheduleFilterContext = {
-  enabled: false,
+  enabled: true,
   schedule: {}
 };
 export const ScheduleFilter = createContext<ReactState<ScheduleFilterContext>>([
@@ -105,10 +98,6 @@ function formValuesToContext(
   return { enabled: values.enabled, schedule };
 }
 
-function TimeField(props: FieldProps["field"]) {
-  return <input type="time" {...props} />;
-}
-
 export function ScheduleDialog(props: ScheduleDialogProps) {
   const [scheduleFilter, setScheduleFilter] = useContext(ScheduleFilter);
   const navigate = useNavigate();
@@ -156,7 +145,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                           <Field
                             className="ml-1 mr-4 h-6 px-0.5 bg-white border font-mono"
                             name={`schedule.${i}.startTime`}
-                            as={TimeField}
+                            type="time"
                           />
                         </label>
                         <label className="flex">
@@ -164,7 +153,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                           <Field
                             className="ml-1 mr-2 h-6 px-0.5 bg-white border font-mono"
                             name={`schedule.${i}.endTime`}
-                            as={TimeField}
+                            type="time"
                           />
                         </label>
                         <button
@@ -218,6 +207,10 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
             >
               Clear Filter
             </button>
+            <label>
+              <Field className="ml-4 mr-1" type="checkbox" name="enabled" />
+              Enabled
+            </label>
           </Form>
         )}
       </Formik>

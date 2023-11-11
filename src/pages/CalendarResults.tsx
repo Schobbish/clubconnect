@@ -15,9 +15,11 @@ export function CalendarResults() {
 
   useEffect(() => {
     apiAxios
-      .post("/api/searchMeetings", scheduleFilter.schedule, {
-        params: { categories: categoryFilter.join(",") }
-      })
+      .post(
+        "/api/searchMeetings",
+        scheduleFilter.enabled ? scheduleFilter.schedule : {},
+        { params: { categories: categoryFilter.join(",") } }
+      )
       .then((res) => {
         setMeetingData(res.data);
         setErrorMessage("");
