@@ -1,7 +1,7 @@
 import { defaultTo, shuffle } from "lodash-es";
 import { rest } from "msw";
 import { ClubData } from "../../models/clubTypes";
-import { createClubList } from "../../util/misc";
+import { createClubList, humanArrayJoiner } from "../../util/misc";
 import { clubJson } from "../clubJson";
 
 /**
@@ -49,10 +49,15 @@ export const searchClubs = rest.get(
         }
       });
     if (clubNames.length === 0) {
-      return res(
-        ctx.status(404),
-        ctx.json(`No clubs found for query "${query}"`)
+      let errorMessage = `No clubs found for query "${query}"`;
+      errorMessage += humanArrayJoiner(
+        categories,
+        "or",
+        " in your selected category: ",
+        " in your selected categories: "
       );
+
+      return res(ctx.status(404), ctx.json(errorMessage + "."));
     }
 
     if (req.url.searchParams.get("shuffle")?.toLowerCase() === "true")

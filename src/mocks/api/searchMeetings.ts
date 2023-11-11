@@ -1,6 +1,7 @@
 import { defaultTo, unset } from "lodash-es";
 import { rest } from "msw";
 import { MeetingSchedule, weekOrder } from "../../models/meetingTypes";
+import { humanArrayJoiner } from "../../util/misc";
 import { clubJson } from "../clubJson";
 import { meetings } from "../meetings";
 
@@ -27,19 +28,17 @@ export const searchMeetings = rest.post(
         let allowedClubNames =
           clubNameParam.length === 0 ? Object.keys(clubJson) : [clubNameParam];
 
-        if (clubNameParam.length === 0) {
-          const categoriesParam = defaultTo(
-            req.url.searchParams.get("categories"),
-            ""
+        const categoriesParam = defaultTo(
+          req.url.searchParams.get("categories"),
+          ""
+        );
+        const categories = categoriesParam.split(",");
+        if (clubNameParam.length === 0 && categoriesParam.length !== 0) {
+          allowedClubNames = allowedClubNames.filter((clubName) =>
+            categories
+              .map((val) => clubJson[clubName].categories.includes(val))
+              .includes(true)
           );
-          if (categoriesParam.length !== 0) {
-            const categories = categoriesParam.split(",");
-            allowedClubNames = allowedClubNames.filter((clubName) =>
-              categories
-                .map((val) => clubJson[clubName].categories.includes(val))
-                .includes(true)
-            );
-          }
         }
 
         const schedule: MeetingSchedule = {};
@@ -49,7 +48,6 @@ export const searchMeetings = rest.post(
             if (
               // check if clubName is in the allowed list (inefficient)
               allowedClubNames.includes(meeting.clubName) &&
-              req.bodyUsed &&
               // check if meeting is outside any blocks
               !defaultTo(body[day], [])
                 .map((block) => {
@@ -66,7 +64,25 @@ export const searchMeetings = rest.post(
         }
 
         if (Object.keys(schedule).length === 0) {
-          return res(ctx.status(404), ctx.json("No events found"));
+          let errorMessage = `No events found`;
+          if (clubNameParam.length === 0) {
+            if (Object.keys(body).length !== 0) {
+              errorMessage += " that fit your schedule";
+            }
+            if (categoriesParam.length !== 0) {
+              if (Object.keys(body).length !== 0) errorMessage += " and";
+              errorMessage += humanArrayJoiner(
+                categories,
+                "or",
+                " for clubs in your selected category: ",
+                " for clubs in your selected categories: "
+              );
+            }
+          } else {
+            errorMessage += ` for club "${clubNameParam}"`;
+          }
+
+          return res(ctx.status(404), ctx.json(errorMessage + "."));
         } else {
           return res(ctx.status(200), ctx.json<MeetingSchedule>(schedule));
         }

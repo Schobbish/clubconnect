@@ -31,3 +31,31 @@ export function createClubList(
 export function convert24HourTime(time: string) {
   return DateFns.format(DateFns.parse(time, "HH:mm", new Date(0)), "h:mma");
 }
+
+/**
+ * Joins a array using commas and a conjuction
+ * @param array The array to join
+ * @param conjunction The word that goes before the last item
+ * @param singularBase Prepend this string to result iff array is length 1
+ * @param pluralBase Prepend this string to result iff array is not length 1
+ */
+export function humanArrayJoiner(
+  array: string[],
+  conjunction = "and",
+  singularBase = "",
+  pluralBase = ""
+) {
+  let result = "";
+  const sep = array.length > 2 ? ", " : " ";
+  if (array.length > 1) {
+    result += pluralBase;
+    array.forEach((val, i) => {
+      console.log(i === array.length - 1 ? conjunction + " " + val : val + sep);
+      return (result +=
+        i === array.length - 1 ? conjunction + " " + val : val + sep);
+    });
+  } else if (array.length === 1) {
+    result += singularBase + array[0];
+  }
+  return result;
+}
