@@ -24,7 +24,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ["Inter", ...defaultTheme.fontFamily.sans]
+      sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      mono: ["'PT Mono'", ...defaultTheme.fontFamily.mono]
     }
   },
   plugins: []

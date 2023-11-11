@@ -93,7 +93,6 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
       <Formik
         initialValues={contextToFormValues(scheduleFilter)}
         onSubmit={(values: ScheduleFormValues) => {
-          alert(JSON.stringify(formValuesToContext(values), null, 4));
           setScheduleFilter(formValuesToContext(values));
           navigate("/calendar");
           props.onClose();
@@ -128,7 +127,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                       <label className="flex">
                         From:
                         <Field
-                          className="ml-1 mr-4 h-6 px-0.5 bg-white border"
+                          className="ml-1 mr-4 h-6 px-0.5 bg-white border font-mono"
                           name={`schedule.${i}.startTime`}
                           as={TimeField}
                           placeholder="12:00"
@@ -137,7 +136,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                       <label className="flex">
                         To:
                         <Field
-                          className="ml-1 mr-2 h-6 px-0.5 bg-white border"
+                          className="ml-1 mr-2 h-6 px-0.5 bg-white border font-mono"
                           name={`schedule.${i}.endTime`}
                           as={TimeField}
                         />
