@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/clubconnect/static/css/main.f776ca9a.css",
-    "main.js": "/clubconnect/static/js/main.57ca04c9.js",
-    "static/js/788.b70b41d6.chunk.js": "/clubconnect/static/js/788.b70b41d6.chunk.js",
-    "static/js/787.fa3c4679.chunk.js": "/clubconnect/static/js/787.fa3c4679.chunk.js",
-    "static/js/870.5580d65e.chunk.js": "/clubconnect/static/js/870.5580d65e.chunk.js",
-    "static/media/logo.png": "/clubconnect/static/media/logo.fbdee223f1540538c99b.png",
-    "static/media/list.svg": "/clubconnect/static/media/list.7a22fe94e740201d1f1535ae7d6f2c59.svg",
-    "static/media/instagram.svg": "/clubconnect/static/media/instagram.4d969dd141d389ed7a2fe7584b56d681.svg",
-    "static/media/search.svg": "/clubconnect/static/media/search.56e5e2e432edcbd5f466e5da73e19c0a.svg",
-    "index.html": "/clubconnect/index.html",
-    "static/media/icon_clyde_black_RGB.svg": "/clubconnect/static/media/icon_clyde_black_RGB.851c613e4edbf0bb480e5feb0e807be4.svg",
-    "static/media/linkedin.svg": "/clubconnect/static/media/linkedin.2eda7bddaacee15c44494bb63ca94165.svg",
-    "static/media/grid.svg": "/clubconnect/static/media/grid.9245de468cffe23d05c23ab30976e893.svg",
-    "static/media/facebook.svg": "/clubconnect/static/media/facebook.4d4460260f64103d8da4a91d8e856d36.svg",
-    "static/media/remove.svg": "/clubconnect/static/media/remove.9601e08804db5fb354e109b79063bc6b.svg",
-    "static/media/add.svg": "/clubconnect/static/media/add.c38f7325232c93fdd5ae02ff33971998.svg",
-    "main.f776ca9a.css.map": "/clubconnect/static/css/main.f776ca9a.css.map",
-    "main.57ca04c9.js.map": "/clubconnect/static/js/main.57ca04c9.js.map",
-    "788.b70b41d6.chunk.js.map": "/clubconnect/static/js/788.b70b41d6.chunk.js.map",
-    "787.fa3c4679.chunk.js.map": "/clubconnect/static/js/787.fa3c4679.chunk.js.map",
-    "870.5580d65e.chunk.js.map": "/clubconnect/static/js/870.5580d65e.chunk.js.map"
+    "main.css": "./static/css/main.f776ca9a.css",
+    "main.js": "./static/js/main.c3f4cc6a.js",
+    "static/js/788.610aa936.chunk.js": "./static/js/788.610aa936.chunk.js",
+    "static/js/787.fa3c4679.chunk.js": "./static/js/787.fa3c4679.chunk.js",
+    "static/js/870.d4e5bce1.chunk.js": "./static/js/870.d4e5bce1.chunk.js",
+    "static/media/logo.png": "./static/media/logo.fbdee223f1540538c99b.png",
+    "static/media/list.svg": "./static/media/list.7a22fe94e740201d1f1535ae7d6f2c59.svg",
+    "static/media/instagram.svg": "./static/media/instagram.4d969dd141d389ed7a2fe7584b56d681.svg",
+    "static/media/search.svg": "./static/media/search.56e5e2e432edcbd5f466e5da73e19c0a.svg",
+    "static/media/icon_clyde_black_RGB.svg": "./static/media/icon_clyde_black_RGB.851c613e4edbf0bb480e5feb0e807be4.svg",
+    "index.html": "./index.html",
+    "static/media/linkedin.svg": "./static/media/linkedin.2eda7bddaacee15c44494bb63ca94165.svg",
+    "static/media/grid.svg": "./static/media/grid.9245de468cffe23d05c23ab30976e893.svg",
+    "static/media/facebook.svg": "./static/media/facebook.4d4460260f64103d8da4a91d8e856d36.svg",
+    "static/media/remove.svg": "./static/media/remove.9601e08804db5fb354e109b79063bc6b.svg",
+    "static/media/add.svg": "./static/media/add.c38f7325232c93fdd5ae02ff33971998.svg",
+    "main.f776ca9a.css.map": "./static/css/main.f776ca9a.css.map",
+    "main.c3f4cc6a.js.map": "./static/js/main.c3f4cc6a.js.map",
+    "788.610aa936.chunk.js.map": "./static/js/788.610aa936.chunk.js.map",
+    "787.fa3c4679.chunk.js.map": "./static/js/787.fa3c4679.chunk.js.map",
+    "870.d4e5bce1.chunk.js.map": "./static/js/870.d4e5bce1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f776ca9a.css",
-    "static/js/main.57ca04c9.js"
+    "static/js/main.c3f4cc6a.js"
   ]
 }
