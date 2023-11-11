@@ -1,17 +1,19 @@
 import { defaultTo, isUndefined } from "lodash-es";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Calendar } from "../components/Calendar";
 import { MainLayout } from "../components/MainLayout";
+import { DisplayIcons } from "../components/SocialsIconDisplay";
 import { ClubData, socialTypes } from "../models/clubTypes";
+import { MeetingSchedule } from "../models/meetingTypes";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { inferLogoSource } from "../util/misc";
-import { DisplayIcons } from "../components/SocialsIconDisplay";
-import { Calendar } from "../components/Calendar";
-import { meetings } from "../mocks/meetings";
 
 export function Club() {
   const [clubData, setClubData] = useState<ClubData>();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [clubErrorMessage, setClubErrorMessage] = useState("");
+  const [meetingData, setMeetingData] = useState<MeetingSchedule>();
+  const [meetingErrorMessage, setMeetingErrorMessage] = useState("");
   const searchParams = useSearchParams()[0];
   const name = defaultTo(searchParams.get("name"), "");
 
@@ -22,14 +24,23 @@ export function Club() {
         setClubData(res.data);
       })
       .catch((err) => {
-        setErrorMessage(getErrorMessage(err));
+        setClubErrorMessage(getErrorMessage(err));
+      });
+
+    apiAxios
+      .post("/api/searchMeetings", {}, { params: { clubName: name } })
+      .then((res) => {
+        setMeetingData(res.data);
+      })
+      .catch((err) => {
+        setMeetingErrorMessage(getErrorMessage(err));
       });
   }, [name]);
 
   return (
     <MainLayout className="club" headline="Club Details" showBackButton>
-      {errorMessage || isUndefined(clubData) ? (
-        <span className="api-error">{errorMessage}</span>
+      {clubErrorMessage || isUndefined(clubData) ? (
+        <span className="api-error">{clubErrorMessage}</span>
       ) : (
         <div className="pr-2">
           <div className="my-4 md:flex">
@@ -58,7 +69,11 @@ export function Club() {
           </div>
           {clubData.description}
           <h3 className="pt-5 text-center">Weekly Events</h3>
-          <Calendar meetingSchedule={meetings} clubName={clubData.name} />
+          {meetingErrorMessage || isUndefined(meetingData) ? (
+            <span className="api-error">{meetingErrorMessage}</span>
+          ) : (
+            <Calendar meetingSchedule={meetingData} />
+          )}
         </div>
       )}
     </MainLayout>
