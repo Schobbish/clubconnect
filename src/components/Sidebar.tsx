@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AllClubsDialog } from "./AllClubsDialog";
 import { CategoryDialog } from "./CategoryDialog";
+import { ScheduleDialog } from "./ScheduleDialog";
 
 export interface SidebarProps {
   /** true to show a back button */
@@ -55,6 +56,10 @@ export function Sidebar(props: SidebarProps) {
           >
             Schedule
           </button>
+          <ScheduleDialog
+            open={showScheduleDialog}
+            onClose={() => setShowScheduleDialog(false)}
+          />
         </div>
       </div>
     </div>

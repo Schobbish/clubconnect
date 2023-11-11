@@ -1,11 +1,11 @@
 import { Route, createRoutesFromElements } from "react-router-dom";
 import { App } from "./App";
 import "./index.css";
+import { CalendarResults } from "./pages/CalendarResults";
 import { Club } from "./pages/Club";
 import { Error404 } from "./pages/Error404";
 import { Home } from "./pages/Home";
 import { Search } from "./pages/Search";
-import { CalendarResults } from "./pages/CalendarResults";
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
