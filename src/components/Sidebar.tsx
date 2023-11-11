@@ -30,10 +30,16 @@ export function Sidebar(props: SidebarProps) {
         </div>
         <div className="pl-3 pr-1 font-bold text-xl">
           <button
-            className="mb-6 underline block"
+            className="mb-3 underline block"
             onClick={() => setShowClearFiltersDialog(!showClearFiltersDialog)}
           >
             All Clubs
+          </button>
+          <button
+            className="mb-6 underline block"
+            onClick={() => navigate("/calendar")}
+          >
+            Calendar
           </button>
           <AllClubsDialog
             open={showClearFiltersDialog}
