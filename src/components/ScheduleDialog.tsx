@@ -1,7 +1,15 @@
-import { Field, FieldArray, FieldProps, Form, Formik } from "formik";
-import { defaultTo, noop } from "lodash-es";
+import {
+  ErrorMessage,
+  Field,
+  FieldArray,
+  FieldProps,
+  Form,
+  Formik
+} from "formik";
+import { defaultTo, isUndefined, noop } from "lodash-es";
 import { createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import addIcon from "../images/add.svg";
 import removeIcon from "../images/remove.svg";
 import { DayOfWeek, MeetingSchedule, weekOrder } from "../models/meetingTypes";
@@ -38,6 +46,26 @@ const initialMeetingValue: ScheduleFormValues["schedule"][number] = {
   startTime: "",
   endTime: ""
 };
+
+const scheduleSchema = Yup.object().shape({
+  enabled: Yup.boolean().required(),
+  schedule: Yup.array()
+    .required()
+    .of(
+      Yup.object().shape({
+        day: Yup.string().required("Day must be selected"),
+        startTime: Yup.string().required("Start time is required"),
+        endTime: Yup.string()
+          .required("End time is required")
+          .test(
+            "end-after-start",
+            "Must end after it begins",
+            (value, testContext) =>
+              !isUndefined(value) && testContext.parent.startTime <= value
+          )
+      })
+    )
+});
 
 function contextToFormValues(
   context: ScheduleFilterContext
@@ -92,6 +120,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
     <Dialog className="schedule-dialog p-2 bg-gray border-2" {...props}>
       <Formik
         initialValues={contextToFormValues(scheduleFilter)}
+        validationSchema={scheduleSchema}
         onSubmit={(values: ScheduleFormValues) => {
           setScheduleFilter(formValuesToContext(values));
           navigate("/calendar");
@@ -108,52 +137,68 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
               {(fieldArray) => (
                 <div className="min-h-[16rem]">
                   {form.values.schedule.map((val, i) => (
-                    <div className="flex whitespace-nowrap mb-1" key={i}>
-                      <label className="flex">
-                        Day:
-                        <Field
-                          className="ml-1 mr-4 h-6 px-0.5 bg-white border"
-                          name={`schedule.${i}.day`}
-                          as="select"
-                        >
-                          <option value="" disabled></option>
-                          {weekOrder.map((day) => (
-                            <option value={day} key={day}>
-                              {day}
-                            </option>
-                          ))}
-                        </Field>
-                      </label>
-                      <label className="flex">
-                        From:
-                        <Field
-                          className="ml-1 mr-4 h-6 px-0.5 bg-white border font-mono"
-                          name={`schedule.${i}.startTime`}
-                          as={TimeField}
-                          placeholder="12:00"
-                        />
-                      </label>
-                      <label className="flex">
-                        To:
-                        <Field
-                          className="ml-1 mr-2 h-6 px-0.5 bg-white border font-mono"
-                          name={`schedule.${i}.endTime`}
-                          as={TimeField}
-                        />
-                      </label>
-                      {form.values.schedule.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => fieldArray.remove(i)}
-                        >
-                          <img
-                            className="min-w-[12px] pr-2"
-                            src={removeIcon}
-                            alt="Remove icon"
+                    <>
+                      <div className="flex whitespace-nowrap my-1" key={i}>
+                        <label className="flex">
+                          Day:
+                          <Field
+                            className="ml-1 mr-4 h-6 px-0.5 bg-white border"
+                            name={`schedule.${i}.day`}
+                            as="select"
+                          >
+                            <option value="" disabled></option>
+                            {weekOrder.map((day) => (
+                              <option value={day} key={day}>
+                                {day}
+                              </option>
+                            ))}
+                          </Field>
+                        </label>
+                        <label className="flex">
+                          Start:
+                          <Field
+                            className="ml-1 mr-4 h-6 px-0.5 bg-white border font-mono"
+                            name={`schedule.${i}.startTime`}
+                            as={TimeField}
                           />
-                        </button>
-                      )}
-                    </div>
+                        </label>
+                        <label className="flex">
+                          End:
+                          <Field
+                            className="ml-1 mr-2 h-6 px-0.5 bg-white border font-mono"
+                            name={`schedule.${i}.endTime`}
+                            as={TimeField}
+                          />
+                        </label>
+                        {form.values.schedule.length > 1 && (
+                          <button
+                            className="pr-2.5"
+                            type="button"
+                            onClick={() => fieldArray.remove(i)}
+                          >
+                            <img
+                              className="min-w-[12px] min-h-[12px]"
+                              src={removeIcon}
+                              alt="Remove icon"
+                            />
+                          </button>
+                        )}
+                      </div>
+                      <div className="errors text-red pl-4 text-xs leading-tight">
+                        <ErrorMessage
+                          name={`schedule.${i}.day`}
+                          component="p"
+                        />
+                        <ErrorMessage
+                          name={`schedule.${i}.startTime`}
+                          component="p"
+                        />
+                        <ErrorMessage
+                          name={`schedule.${i}.endTime`}
+                          component="p"
+                        />
+                      </div>
+                    </>
                   ))}
                   <button
                     className="block mx-auto my-4"

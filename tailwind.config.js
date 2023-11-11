@@ -21,7 +21,8 @@ module.exports = {
       orange: {
         200: "#FEE9DA",
         500: "#FF9447"
-      }
+      },
+      red: "#F00"
     },
     fontFamily: {
       sans: ["Inter", ...defaultTheme.fontFamily.sans],
