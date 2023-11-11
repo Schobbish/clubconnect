@@ -17,7 +17,12 @@ export function Search() {
   useEffect(() => {
     apiAxios
       .get("/api/searchClubs", {
-        params: { q: query, categories: categoryFilter.join(",") }
+        params: {
+          q: query,
+          categories: categoryFilter.enabled
+            ? categoryFilter.filter.join(",")
+            : ""
+        }
       })
       .then((res) => {
         setClubList(res.data);

@@ -1,17 +1,19 @@
 import { Field, Form, Formik } from "formik";
 import { noop } from "lodash-es";
 import { createContext, useContext, useEffect, useState } from "react";
-import { ReactState } from "../models/misc";
+import { DisableableFilter, ReactState } from "../models/misc";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
 
-export const CategoryFilter = createContext<ReactState<string[]>>([[], noop]);
+export const intiialCategoryFilterValue = {
+  enabled: true,
+  filter: []
+};
+export const CategoryFilter = createContext<
+  ReactState<DisableableFilter<string[]>>
+>([intiialCategoryFilterValue, noop]);
 
 export type CategoryDialogProps = Omit<DialogProps, "className" | "children">;
-
-interface CategoryFormValues {
-  category: string[];
-}
 
 export function CategoryDialog(props: CategoryDialogProps) {
   const [categoryFilter, setCategoryFilter] = useContext(CategoryFilter);
@@ -35,9 +37,9 @@ export function CategoryDialog(props: CategoryDialogProps) {
       {...props}
     >
       <Formik
-        initialValues={{ category: categoryFilter }}
-        onSubmit={(values: CategoryFormValues) => {
-          setCategoryFilter(values.category);
+        initialValues={categoryFilter}
+        onSubmit={(values: DisableableFilter<string[]>) => {
+          setCategoryFilter(values);
           props.onClose();
         }}
       >
@@ -55,7 +57,7 @@ export function CategoryDialog(props: CategoryDialogProps) {
                       <Field
                         className="mr-1"
                         type="checkbox"
-                        name="category"
+                        name="filter"
                         value={val}
                       />
                       {val}
@@ -69,12 +71,16 @@ export function CategoryDialog(props: CategoryDialogProps) {
                   className="button-secondary"
                   type="button"
                   onClick={() => {
-                    setCategoryFilter([]);
+                    setCategoryFilter(intiialCategoryFilterValue);
                     props.onClose();
                   }}
                 >
                   Clear Filter
                 </button>
+                <label>
+                  <Field className="ml-4 mr-1" type="checkbox" name="enabled" />
+                  Enabled
+                </label>
               </>
             )}
           </Form>

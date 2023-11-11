@@ -6,23 +6,16 @@ import * as Yup from "yup";
 import addIcon from "../images/add.svg";
 import removeIcon from "../images/remove.svg";
 import { DayOfWeek, MeetingSchedule, weekOrder } from "../models/meetingTypes";
-import { ReactState } from "../models/misc";
+import { DisableableFilter, ReactState } from "../models/misc";
 import { Dialog, DialogProps } from "./Dialog";
 
-export interface ScheduleFilterContext {
-  // FUTURE if we want to apply this filter to search results, provide an
-  //     option to disable the filter instead of clearing it entirely
-  enabled: boolean;
-  schedule: MeetingSchedule;
-}
-export const initalScheduleFilterValue: ScheduleFilterContext = {
+export const initalScheduleFilterValue = {
   enabled: true,
-  schedule: {}
+  filter: {}
 };
-export const ScheduleFilter = createContext<ReactState<ScheduleFilterContext>>([
-  initalScheduleFilterValue,
-  noop
-]);
+export const ScheduleFilter = createContext<
+  ReactState<DisableableFilter<MeetingSchedule>>
+>([initalScheduleFilterValue, noop]);
 
 export type ScheduleDialogProps = Omit<DialogProps, "className" | "children">;
 
@@ -58,12 +51,12 @@ const scheduleSchema = Yup.object().shape({
 });
 
 function contextToFormValues(
-  context: ScheduleFilterContext
+  context: DisableableFilter<MeetingSchedule>
 ): ScheduleFormValues {
   const schedule: ScheduleFormValues["schedule"] = [];
 
   for (const day of weekOrder) {
-    for (const meeting of defaultTo(context.schedule[day], [])) {
+    for (const meeting of defaultTo(context.filter[day], [])) {
       schedule.push({
         day,
         startTime: meeting.startTime,
@@ -80,8 +73,8 @@ function contextToFormValues(
 
 function formValuesToContext(
   values: ScheduleFormValues
-): ScheduleFilterContext {
-  const schedule: ScheduleFilterContext["schedule"] = {};
+): DisableableFilter<MeetingSchedule> {
+  const schedule: MeetingSchedule = {};
 
   for (const meeting of values.schedule) {
     if (meeting.day !== "") {
@@ -95,7 +88,7 @@ function formValuesToContext(
     }
   }
 
-  return { enabled: values.enabled, schedule };
+  return { enabled: values.enabled, filter: schedule };
 }
 
 export function ScheduleDialog(props: ScheduleDialogProps) {
@@ -201,7 +194,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
               className="button-secondary"
               type="button"
               onClick={() => {
-                setScheduleFilter({ enabled: false, schedule: {} });
+                setScheduleFilter(initalScheduleFilterValue);
                 props.onClose();
               }}
             >

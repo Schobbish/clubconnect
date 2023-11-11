@@ -34,11 +34,11 @@ export const searchMeetings = rest.post(
           );
           if (categoriesParam.length !== 0) {
             const categories = categoriesParam.split(",");
-            allowedClubNames = allowedClubNames.filter((clubName) => {
+            allowedClubNames = allowedClubNames.filter((clubName) =>
               categories
                 .map((val) => clubJson[clubName].categories.includes(val))
-                .includes(true);
-            });
+                .includes(true)
+            );
           }
         }
 

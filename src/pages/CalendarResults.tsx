@@ -17,8 +17,14 @@ export function CalendarResults() {
     apiAxios
       .post(
         "/api/searchMeetings",
-        scheduleFilter.enabled ? scheduleFilter.schedule : {},
-        { params: { categories: categoryFilter.join(",") } }
+        scheduleFilter.enabled ? scheduleFilter.filter : {},
+        {
+          params: {
+            categories: categoryFilter.enabled
+              ? categoryFilter.filter.join(",")
+              : ""
+          }
+        }
       )
       .then((res) => {
         setMeetingData(res.data);
