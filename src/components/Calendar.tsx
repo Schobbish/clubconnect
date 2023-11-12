@@ -31,7 +31,10 @@ function getAllEvents(props: CalendarProps) {
       {weekOrder.map((dayOfWeek) => (
         <div key={dayOfWeek} className="text-center px-2">
           {props.meetingSchedule[dayOfWeek]?.map((val) => (
-            <div key={val.clubName + val.name} className="event pb-2">
+            <div
+              key={val.clubName + val.name}
+              className="event py-1 border-b last-of-type:border-b-0"
+            >
               <div className="font-bold">{val.name} </div>
               <div className="underline">
                 <Link
