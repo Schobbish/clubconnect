@@ -12,7 +12,7 @@ export function ClubResultsView(props: ClubResultsViewProps) {
   const viewStyle = useContext(ViewStyle)[0];
 
   return (
-    <div className="cards-container flex flex-wrap gap-5 pt-5">
+    <div className="cards-container flex flex-wrap gap-5 pt-4">
       {viewStyle === "grid"
         ? props.clubList.map((club) => (
             <ClubCard name={club.name} logo={club.logo} key={club.name} />

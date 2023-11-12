@@ -37,7 +37,7 @@ export function CalendarResults() {
 
   return (
     <MainLayout className="calendar" showBackButton headline="Calendar Results">
-      <div className="mr-2 mt-2">
+      <div className="mr-2 my-4">
         {errorMessage || isUndefined(meetingData) ? (
           <span className="api-error">{errorMessage}</span>
         ) : (
