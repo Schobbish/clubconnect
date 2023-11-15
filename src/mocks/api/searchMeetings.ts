@@ -41,26 +41,29 @@ export const searchMeetings = rest.post(
           );
         }
 
-        const schedule: MeetingSchedule = {};
-        for (const day of weekOrder) {
-          schedule[day] = [];
-          for (const meeting of defaultTo(meetings[day], [])) {
-            if (
-              // check if clubName is in the allowed list (inefficient)
-              allowedClubNames.includes(meeting.clubName) &&
-              // check if meeting is outside any blocks
-              !defaultTo(body[day], [])
-                .map((block) => {
-                  return (
-                    meeting.endTime <= block.startTime ||
-                    meeting.startTime >= block.endTime
-                  );
-                })
-                .includes(false)
-            )
-              schedule[day]?.push(meeting);
+        // default to meetings if body is empty
+        const schedule: MeetingSchedule =
+          Object.keys(body).length === 0 ? meetings : {};
+        if (Object.keys(body).length !== 0) {
+          for (const day of weekOrder) {
+            schedule[day] = [];
+            for (const meeting of defaultTo(meetings[day], [])) {
+              if (
+                // check if clubName is in the allowed list (inefficient)
+                allowedClubNames.includes(meeting.clubName) &&
+                // check if meeting is inside any blocks
+                defaultTo(body[day], [])
+                  .map(
+                    (block) =>
+                      meeting.endTime >= block.startTime &&
+                      meeting.startTime <= block.endTime
+                  )
+                  .includes(true)
+              )
+                schedule[day]?.push(meeting);
+            }
+            if (schedule[day]?.length === 0) unset(schedule, day);
           }
-          if (schedule[day]?.length === 0) unset(schedule, day);
         }
 
         if (Object.keys(schedule).length === 0) {

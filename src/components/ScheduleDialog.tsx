@@ -109,9 +109,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
         {(form) => (
           <Form>
             <h3>Schedule</h3>
-            <p className="mb-1">
-              Enter your schedule to show events happening in your free time
-            </p>
+            <p className="mb-1">Enter times you are available</p>
             <FieldArray name="schedule">
               {(fieldArray) => (
                 <div className="min-h-[16rem]">
