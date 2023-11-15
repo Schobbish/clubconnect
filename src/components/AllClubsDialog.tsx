@@ -22,6 +22,7 @@ export function AllClubsDialog(props: AllClubsDialogProps) {
           setCategoryFilter({ ...categoryFilter, enabled: false });
           setScheduleFilter({ ...scheduleFilter, enabled: false });
           navigate("/search");
+          props.onClose();
         }}
       >
         Yes

@@ -10,9 +10,9 @@ export function ClubCard(props: ClubCardProps) {
   return (
     <Link to={"/club?" + createSearchParams({ name: props.name })}>
       <div className="clubcard-container max-w-3xs">
-        <div className="image-container h-48">
+        <div className="image-container flex items-center h-48">
           <img
-            className="rounded-xl"
+            className="rounded-xl object-contain"
             src={inferLogoSource(props.logo)}
             alt={props.name + " logo"}
           />
