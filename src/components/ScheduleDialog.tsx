@@ -61,14 +61,30 @@ function contextToFormValues(
   context: DisableableFilter<MeetingSchedule>
 ): ScheduleFormValues {
   const schedule: ScheduleFormValues["schedule"] = [];
+  // holds concatenation of startTimes and endTimes
+  // to check and combine identical intervals
+  const intervals = new Set<string>();
 
   for (const day of weekOrder) {
     for (const meeting of defaultTo(context.filter[day], [])) {
-      schedule.push({
-        days: new Set([day]), // TODO: combine duplicate events?
-        startTime: meeting.startTime,
-        endTime: meeting.endTime
-      });
+      const interval = meeting.startTime + meeting.endTime;
+
+      if (intervals.has(interval)) {
+        schedule
+          .find(
+            (val) =>
+              val.startTime === meeting.startTime &&
+              val.endTime === meeting.endTime
+          )
+          ?.days.add(day);
+      } else {
+        schedule.push({
+          days: new Set([day]),
+          startTime: meeting.startTime,
+          endTime: meeting.endTime
+        });
+        intervals.add(interval);
+      }
     }
   }
 
