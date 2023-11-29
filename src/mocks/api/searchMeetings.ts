@@ -55,8 +55,8 @@ export const searchMeetings = rest.post(
                 defaultTo(body[day], [])
                   .map(
                     (block) =>
-                      meeting.endTime >= block.startTime &&
-                      meeting.startTime <= block.endTime
+                      meeting.startTime >= block.startTime &&
+                      meeting.endTime <= block.endTime
                   )
                   .includes(true)
               )
