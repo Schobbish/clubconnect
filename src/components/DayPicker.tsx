@@ -16,7 +16,7 @@ export function DayPicker(props: FieldProps<Set<DayOfWeek>>["field"]) {
   };
 
   return (
-    <div className="day-picker mx-2 border">
+    <div className="day-picker ml-1 mr-4 border">
       {weekOrder.map((day) => (
         <button
           className={
