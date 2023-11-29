@@ -7,6 +7,7 @@ import addIcon from "../images/add.svg";
 import removeIcon from "../images/remove.svg";
 import { DayOfWeek, MeetingSchedule, weekOrder } from "../models/meetingTypes";
 import { DisableableFilter, ReactState } from "../models/misc";
+import { DayPicker } from "./DayPicker";
 import { Dialog, DialogProps } from "./Dialog";
 
 export const initalScheduleFilterValue = {
@@ -22,13 +23,13 @@ export type ScheduleDialogProps = Omit<DialogProps, "className" | "children">;
 interface ScheduleFormValues {
   enabled: boolean;
   schedule: {
-    day: DayOfWeek | "";
+    days: Set<DayOfWeek>;
     startTime: string;
     endTime: string;
   }[];
 }
 const initialMeetingValue: ScheduleFormValues["schedule"][number] = {
-  day: "",
+  days: new Set(),
   startTime: "",
   endTime: ""
 };
@@ -37,7 +38,13 @@ const scheduleSchema = Yup.object().shape({
   enabled: Yup.boolean().required(),
   schedule: Yup.array().of(
     Yup.object().shape({
-      day: Yup.string().required("Day must be selected"),
+      days: Yup.mixed<Set<DayOfWeek>>()
+        .required()
+        .test(
+          "check-days",
+          "Choose at least one day",
+          (value) => value.size > 0
+        ),
       startTime: Yup.string().required("Start time is required"),
       endTime: Yup.string()
         .required("End time is required")
@@ -58,7 +65,7 @@ function contextToFormValues(
   for (const day of weekOrder) {
     for (const meeting of defaultTo(context.filter[day], [])) {
       schedule.push({
-        day,
+        days: new Set([day]), // TODO: combine duplicate events?
         startTime: meeting.startTime,
         endTime: meeting.endTime
       });
@@ -77,15 +84,15 @@ function formValuesToContext(
   const schedule: MeetingSchedule = {};
 
   for (const meeting of values.schedule) {
-    if (meeting.day !== "") {
-      if (!(meeting.day in schedule)) schedule[meeting.day] = [];
-      schedule[meeting.day]?.push({
+    meeting.days.forEach((day) => {
+      if (!(day in schedule)) schedule[day] = [];
+      schedule[day]?.push({
         name: "",
         clubName: "",
         startTime: meeting.startTime,
         endTime: meeting.endTime
       });
-    }
+    });
   }
 
   return { enabled: values.enabled, filter: schedule };
@@ -116,22 +123,15 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                   {form.values.schedule.map((val, i) => (
                     <div key={i}>
                       <div className="flex whitespace-nowrap my-1">
-                        <label className="flex">
-                          Day:
+                        <label className="flex items-center">
+                          Days:
                           <Field
                             className="ml-1 mr-4 h-6 px-0.5 bg-white border"
-                            name={`schedule.${i}.day`}
-                            as="select"
-                          >
-                            <option value="" disabled></option>
-                            {weekOrder.map((day) => (
-                              <option value={day} key={day}>
-                                {day}
-                              </option>
-                            ))}
-                          </Field>
+                            name={`schedule.${i}.days`}
+                            as={DayPicker}
+                          />
                         </label>
-                        <label className="flex">
+                        <label className="flex items-center">
                           Start:
                           <Field
                             className="ml-1 mr-4 h-6 px-0.5 bg-white border font-mono"
@@ -139,7 +139,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                             type="time"
                           />
                         </label>
-                        <label className="flex">
+                        <label className="flex items-center">
                           End:
                           <Field
                             className="ml-1 mr-2 h-6 px-0.5 bg-white border font-mono"
@@ -161,7 +161,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                       </div>
                       <div className="errors text-red pl-4 text-xs leading-tight">
                         <ErrorMessage
-                          name={`schedule.${i}.day`}
+                          name={`schedule.${i}.days`}
                           component="p"
                         />
                         <ErrorMessage
