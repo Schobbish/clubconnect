@@ -11,7 +11,7 @@ export const meetings: MeetingSchedule = {
     {
       name: "Friendly Show Match",
       clubName: "Chess Club UT Dallas",
-      startTime: "9:00",
+      startTime: "09:00",
       endTime: "12:00"
     },
     {
