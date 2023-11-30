@@ -2,8 +2,8 @@ import { FieldProps, useField } from "formik";
 import { DayOfWeek, weekOrder } from "../models/meetingTypes";
 
 export function DayPicker(props: FieldProps<Set<DayOfWeek>>["field"]) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, _, helpers] = useField<Set<DayOfWeek>>(props.name);
+  // ok javascript I guess I don't need a variable there
+  const [field, , helpers] = useField<Set<DayOfWeek>>(props.name);
 
   const handleClick = (day: DayOfWeek) => {
     const newSet = new Set(field.value);

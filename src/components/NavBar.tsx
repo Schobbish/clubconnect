@@ -1,5 +1,6 @@
-import { Field, Form, Formik } from "formik";
+import { Field, FieldProps, Form, Formik, useField } from "formik";
 import { defaultTo } from "lodash-es";
+import { useEffect } from "react";
 import {
   Link,
   createSearchParams,
@@ -13,8 +14,20 @@ interface SearchFormValues {
   query: string;
 }
 
-export function NavBar() {
+// need to bind the searchParam query to this input's value
+// looks like the best way to do this is by custom field
+function SearchBox(props: FieldProps["field"]) {
+  const [field, , helpers] = useField(props);
   const searchParams = useSearchParams()[0];
+
+  useEffect(() => {
+    helpers.setValue(defaultTo(searchParams.get("q"), ""));
+  }, [searchParams]);
+
+  return <input {...field} {...props} />;
+}
+
+export function NavBar() {
   const navigate = useNavigate();
 
   return (
@@ -29,7 +42,7 @@ export function NavBar() {
         <div className="flex items-center mx-auto sm:mr-0 h-16">
           <Formik
             initialValues={{
-              query: defaultTo(searchParams.get("q"), "")
+              query: ""
             }}
             onSubmit={(values: SearchFormValues) => {
               navigate(
@@ -44,6 +57,7 @@ export function NavBar() {
                   id="query"
                   name="query"
                   placeholder="Search"
+                  as={SearchBox}
                 />
                 <button type="submit">
                   <img
