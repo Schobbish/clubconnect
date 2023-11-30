@@ -20,42 +20,37 @@ export const ScheduleFilter = createContext<
 
 export type ScheduleDialogProps = Omit<DialogProps, "className" | "children">;
 
-interface ScheduleFormValues {
-  enabled: boolean;
-  schedule: {
-    days: Set<DayOfWeek>;
-    startTime: string;
-    endTime: string;
-  }[];
-}
+const scheduleFormSchema = Yup.object().shape({
+  enabled: Yup.boolean().defined(),
+  schedule: Yup.array()
+    .of(
+      Yup.object().shape({
+        days: Yup.mixed<Set<DayOfWeek>>()
+          .required()
+          .test(
+            "check-days",
+            "Choose at least one day",
+            (value) => value.size > 0
+          ),
+        startTime: Yup.string().required("Start time is required"),
+        endTime: Yup.string()
+          .required("End time is required")
+          .test(
+            "end-after-start",
+            "Must end after it begins",
+            (value, testContext) => testContext.parent.startTime <= value
+          )
+      })
+    )
+    .required()
+});
+type ScheduleFormValues = Yup.InferType<typeof scheduleFormSchema>;
+
 const initialMeetingValue: ScheduleFormValues["schedule"][number] = {
   days: new Set(),
   startTime: "",
   endTime: ""
 };
-
-const scheduleSchema = Yup.object().shape({
-  enabled: Yup.boolean().required(),
-  schedule: Yup.array().of(
-    Yup.object().shape({
-      days: Yup.mixed<Set<DayOfWeek>>()
-        .required()
-        .test(
-          "check-days",
-          "Choose at least one day",
-          (value) => value.size > 0
-        ),
-      startTime: Yup.string().required("Start time is required"),
-      endTime: Yup.string()
-        .required("End time is required")
-        .test(
-          "end-after-start",
-          "Must end after it begins",
-          (value, testContext) => testContext.parent.startTime <= value
-        )
-    })
-  )
-});
 
 function contextToFormValues(
   context: DisableableFilter<MeetingSchedule>
@@ -122,7 +117,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
     <Dialog className="schedule-dialog p-2 bg-gray border-2" {...props}>
       <Formik
         initialValues={contextToFormValues(scheduleFilter)}
-        validationSchema={scheduleSchema}
+        validationSchema={scheduleFormSchema}
         onSubmit={(values: ScheduleFormValues) => {
           setScheduleFilter(formValuesToContext(values));
           navigate("/calendar");
