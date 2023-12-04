@@ -19,3 +19,11 @@ export const weekOrder = [
 export type DayOfWeek = (typeof weekOrder)[number];
 
 export type MeetingSchedule = { [Day in DayOfWeek]?: Meeting[] };
+
+export interface ExtendedMeeting extends Meeting {
+  clubLogo: string;
+  clubAcronym: string;
+}
+export type ExtendedMeetingSchedule = {
+  [Day in keyof MeetingSchedule]: ExtendedMeeting[];
+};

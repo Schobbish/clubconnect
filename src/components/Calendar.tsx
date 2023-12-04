@@ -1,9 +1,9 @@
 import { Link, createSearchParams } from "react-router-dom";
-import { MeetingSchedule, weekOrder } from "../models/meetingTypes";
+import { ExtendedMeetingSchedule, weekOrder } from "../models/meetingTypes";
 import { convert24HourTime } from "../util/misc";
 
 interface CalendarProps {
-  meetingSchedule: MeetingSchedule;
+  meetingSchedule: ExtendedMeetingSchedule;
   clubName?: string;
 }
 

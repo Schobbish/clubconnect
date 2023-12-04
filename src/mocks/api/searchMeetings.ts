@@ -1,25 +1,43 @@
 import { defaultTo, unset } from "lodash-es";
 import { rest } from "msw";
-import { MeetingSchedule, weekOrder } from "../../models/meetingTypes";
+import {
+  ExtendedMeeting,
+  ExtendedMeetingSchedule,
+  Meeting,
+  weekOrder
+} from "../../models/meetingTypes";
 import { humanArrayJoiner } from "../../util/misc";
 import { clubJson } from "../clubJson";
 import { meetings } from "../meetings";
 
+function addClubInfoToMeeting(meeting: Meeting): ExtendedMeeting {
+  if (meeting.clubName in clubJson) {
+    return { ...meeting, clubLogo: "", clubAcronym: "" };
+  } else {
+    return {
+      ...meeting,
+      clubLogo: clubJson[meeting.clubName].logo,
+      clubAcronym: clubJson[meeting.clubName].acronym
+    };
+  }
+}
+
 /**
  * Search club meetings with a schedule filter.
- * This is a POST request to facilitate passing in the filter. Optionally
- *     pass a MeetingSchedule object in the request body to apply it.
+ * This is a POST request to facilitate passing in the filter. Optionally pass
+ *     an ExtendedMeetingSchedule object in the request body to apply it.
  * @param clubName Optionally filter meetings to this club name only.
  * @param categories Optional comma-separated list of categories. All returned
  *     events must be from clubs that are in at least one of these categories.
  *     Note: ignored if clubName is specified
- * @returns A MeetingSchedule object whose meetings reflect the request filters.
+ * @returns An ExtendedMeetingSchedule object whose
+ *     meetings reflect the request filters.
  */
 export const searchMeetings = rest.post(
   process.env.PUBLIC_URL + "/api/searchMeetings",
   async (req, res, ctx) => {
     return req
-      .json<MeetingSchedule>()
+      .json<ExtendedMeetingSchedule>()
       .then((body) => {
         const clubNameParam = defaultTo(
           req.url.searchParams.get("clubName"),
@@ -41,10 +59,17 @@ export const searchMeetings = rest.post(
           );
         }
 
-        // default to meetings if body is empty
-        const schedule: MeetingSchedule =
-          Object.keys(body).length === 0 ? meetings : {};
-        if (Object.keys(body).length !== 0) {
+        const schedule: ExtendedMeetingSchedule = {};
+        if (Object.keys(body).length === 0) {
+          // default to meetings if body is empty
+          // but need to add logos and acronyms
+          for (const day of weekOrder) {
+            schedule[day] = [];
+            for (const meeting of defaultTo(meetings[day], [])) {
+              schedule[day]?.push(addClubInfoToMeeting(meeting));
+            }
+          }
+        } else {
           for (const day of weekOrder) {
             schedule[day] = [];
             for (const meeting of defaultTo(meetings[day], [])) {
@@ -60,7 +85,7 @@ export const searchMeetings = rest.post(
                   )
                   .includes(true)
               )
-                schedule[day]?.push(meeting);
+                schedule[day]?.push(addClubInfoToMeeting(meeting));
             }
             if (schedule[day]?.length === 0) unset(schedule, day);
           }
@@ -87,7 +112,10 @@ export const searchMeetings = rest.post(
 
           return res(ctx.status(404), ctx.json(errorMessage + "."));
         } else {
-          return res(ctx.status(200), ctx.json<MeetingSchedule>(schedule));
+          return res(
+            ctx.status(200),
+            ctx.json<ExtendedMeetingSchedule>(schedule)
+          );
         }
       })
       .catch(() => {

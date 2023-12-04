@@ -5,14 +5,14 @@ import { Calendar } from "../components/Calendar";
 import { MainLayout } from "../components/MainLayout";
 import { DisplayIcons } from "../components/SocialsIconDisplay";
 import { ClubData, socialTypes } from "../models/clubTypes";
-import { MeetingSchedule } from "../models/meetingTypes";
+import { ExtendedMeetingSchedule } from "../models/meetingTypes";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { inferLogoSource } from "../util/misc";
 
 export function Club() {
   const [clubData, setClubData] = useState<ClubData>();
   const [clubErrorMessage, setClubErrorMessage] = useState("");
-  const [meetingData, setMeetingData] = useState<MeetingSchedule>();
+  const [meetingData, setMeetingData] = useState<ExtendedMeetingSchedule>();
   const [meetingErrorMessage, setMeetingErrorMessage] = useState("");
   const searchParams = useSearchParams()[0];
   const name = defaultTo(searchParams.get("name"), "");
