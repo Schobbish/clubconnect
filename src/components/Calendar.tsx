@@ -25,7 +25,7 @@ function getAllEvents(props: CalendarProps) {
           {props.meetingSchedule[dayOfWeek]?.map((val) => (
             <div
               key={val.clubName + val.name}
-              className="event py-1 border-b last-of-type:border-b-0"
+              className="event py-1 border-b last-of-type:border-b-0 overflow-clip"
             >
               <div className="font-bold">{val.name} </div>
               <div className="underline">
@@ -61,7 +61,7 @@ function getClubEvents(props: CalendarProps, clubName: string) {
           {props.meetingSchedule[dayOfWeek]
             ?.filter((meeting) => meeting.clubName === clubName)
             .map((meeting) => (
-              <div key={meeting.name}>
+              <div key={meeting.name} className="">
                 <div className="font-bold event-name overflow-clip">
                   {meeting.name}
                 </div>
