@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
-import { defaultTo, noop } from "lodash-es";
+import { defaultTo, isEmpty, noop } from "lodash-es";
 import { createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -189,7 +189,24 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                   <button
                     className="block mx-auto my-4"
                     type="button"
-                    onClick={() => fieldArray.push(initialMeetingValue)}
+                    onClick={() => {
+                      const lastScheduleIndex = form.values.schedule.length - 1;
+                      // set last entry to be touched to trigger validation
+                      form.setFieldTouched(
+                        `schedule.${lastScheduleIndex}.days`
+                      );
+                      form.setFieldTouched(
+                        `schedule.${lastScheduleIndex}.startTime`
+                      );
+                      form.setFieldTouched(
+                        `schedule.${lastScheduleIndex}.endTime`
+                      );
+                      // prevent new entry from being added if invalid
+                      form.validateForm().then((errors) => {
+                        if (isEmpty(errors))
+                          fieldArray.push(initialMeetingValue);
+                      });
+                    }}
                   >
                     <img src={addIcon} alt="Add icon" />
                   </button>
