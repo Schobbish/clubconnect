@@ -18,10 +18,16 @@ export function Sidebar(props: SidebarProps) {
   return (
     <div className="sidebar-container top-0 h-screen pt-4 text-center">
       <div className="sticky">
-        <div className="h-14">
+        <div className="h-14 flex">
+          <button
+            className="button-primary ml-2 h-1/2 block"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </button>
           {props.backButton && (
             <button
-              className="button-primary ml-auto block"
+              className="button-primary ml-auto h-1/2 block"
               onClick={() => navigate(-1)}
             >
               Back
