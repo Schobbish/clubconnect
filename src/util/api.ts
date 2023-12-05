@@ -15,10 +15,18 @@ export const apiAxios = axios.create({
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getErrorMessage(err: any) {
   if (err && err.response) {
-    return defaultTo(
-      err.response.data,
-      defaultTo(err.response.statusText, err.response.status)
-    );
+    if (
+      err.response.headers["content-type"]
+        ?.toString()
+        .toLowerCase()
+        .includes("text/html")
+    )
+      return "MSW has timed out. Please refresh the page. The library we are using to simulate a backend gets killed by the browser after a period of time, and this should not happen with a proper backend.";
+    else
+      return defaultTo(
+        err.response.data,
+        defaultTo(err.response.statusText, err.response.status)
+      );
   } else {
     return "No response from server";
   }
