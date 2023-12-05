@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AllClubsDialog } from "./AllClubsDialog";
-import { CategoryDialog } from "./CategoryDialog";
-import { ScheduleDialog } from "./ScheduleDialog";
+import { CategoryDialog, CategoryFilter } from "./CategoryDialog";
+import { ScheduleDialog, ScheduleFilter } from "./ScheduleDialog";
 
 export interface SidebarProps {
   /** true to show a back button */
@@ -14,6 +14,21 @@ export function Sidebar(props: SidebarProps) {
   const [showCategoryDialog, setShowCategoryDialog] = useState(false);
   const [showScheduleDialog, setShowScheduleDialog] = useState(false);
   const navigate = useNavigate();
+  const categroyFilter = useContext(CategoryFilter);
+  const scheduleFilter = useContext(ScheduleFilter);
+
+  console.log(Object.keys(scheduleFilter[0].filter).length);
+
+  function allClub() {
+    if (
+      categroyFilter[0].length > 0 ||
+      Object.keys(scheduleFilter[0].filter).length > 0
+    ) {
+      setShowClearFiltersDialog(!showClearFiltersDialog);
+    } else {
+      navigate("/search");
+    }
+  }
 
   return (
     <div className="sidebar-container top-0 h-screen pt-4 text-center">
@@ -35,10 +50,7 @@ export function Sidebar(props: SidebarProps) {
           )}
         </div>
         <div className="pl-3 pr-1 font-bold text-xl">
-          <button
-            className="mb-3 underline block"
-            onClick={() => setShowClearFiltersDialog(!showClearFiltersDialog)}
-          >
+          <button className="mb-3 underline block" onClick={() => allClub()}>
             All Clubs
           </button>
           <button
