@@ -18,6 +18,8 @@ function sortMeetingSchedules(props: CalendarProps) {
 
 /* Gets all events within the meeting.tsx file */
 function getAllEvents(props: CalendarProps) {
+  console.log(props.meetingSchedule);
+
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
       {weekOrder.map((dayOfWeek) => (
@@ -34,7 +36,7 @@ function getAllEvents(props: CalendarProps) {
                 >
                   <img
                     className=""
-                    src={val.clubLogo}
+                    src={process.env.PUBLIC_URL + val.clubLogo}
                     alt={val.clubName + " logo"}
                   />
                   {val.clubAcronym.length >= 3 ? val.clubAcronym : val.clubName}
