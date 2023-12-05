@@ -130,7 +130,11 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
             <p className="mb-1">Enter times you are available</p>
             <FieldArray name="schedule">
               {(fieldArray) => (
-                <div className="min-h-[16rem]">
+                <div
+                  className={
+                    "min-h-[16rem]" + (form.values.enabled ? "" : " opacity-30")
+                  }
+                >
                   {form.values.schedule.map((val, i) => (
                     <div key={i}>
                       <div className="flex whitespace-nowrap my-1">
@@ -140,6 +144,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                             className="ml-1 mr-4 h-6 px-0.5 bg-white border"
                             name={`schedule.${i}.days`}
                             as={DayPicker}
+                            disabled={!form.values.enabled}
                           />
                         </label>
                         <label className="flex items-center">
@@ -148,6 +153,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                             className="ml-1 mr-4 h-6 px-0.5 bg-white border font-mono"
                             name={`schedule.${i}.startTime`}
                             type="time"
+                            disabled={!form.values.enabled}
                           />
                         </label>
                         <label className="flex items-center">
@@ -156,12 +162,14 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                             className="ml-1 mr-2 h-6 px-0.5 bg-white border font-mono"
                             name={`schedule.${i}.endTime`}
                             type="time"
+                            disabled={!form.values.enabled}
                           />
                         </label>
                         <button
                           className="pr-2.5"
                           type="button"
                           onClick={() => fieldArray.remove(i)}
+                          disabled={!form.values.enabled}
                         >
                           <img
                             className="min-w-[12px] min-h-[12px]"
@@ -207,6 +215,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                           fieldArray.push(initialMeetingValue);
                       });
                     }}
+                    disabled={!form.values.enabled}
                   >
                     <img src={addIcon} alt="Add icon" />
                   </button>

@@ -1,7 +1,11 @@
-import { FieldProps, useField } from "formik";
+import { FieldInputProps, useField } from "formik";
 import { DayOfWeek, weekOrder } from "../models/meetingTypes";
 
-export function DayPicker(props: FieldProps<Set<DayOfWeek>>["field"]) {
+export interface DayPickerProps extends FieldInputProps<Set<DayOfWeek>> {
+  disabled?: boolean;
+}
+
+export function DayPicker(props: DayPickerProps) {
   // ok javascript I guess I don't need a variable there
   const [field, , helpers] = useField<Set<DayOfWeek>>(props.name);
 
@@ -25,6 +29,7 @@ export function DayPicker(props: FieldProps<Set<DayOfWeek>>["field"]) {
           }
           type="button"
           onClick={() => handleClick(day)}
+          disabled={props.disabled}
           key={day}
         >
           {day.slice(0, 2)}
