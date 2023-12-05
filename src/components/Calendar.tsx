@@ -35,7 +35,7 @@ function getAllEvents(props: CalendarProps) {
                   to={"/club?" + createSearchParams({ name: val.clubName })}
                 >
                   <img
-                    className=""
+                    className="rounded-xl my-2"
                     src={process.env.PUBLIC_URL + val.clubLogo}
                     alt={val.clubName + " logo"}
                   />
