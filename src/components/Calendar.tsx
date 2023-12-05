@@ -32,7 +32,11 @@ function getAllEvents(props: CalendarProps) {
                 <Link
                   to={"/club?" + createSearchParams({ name: val.clubName })}
                 >
-                  <div>{val.clubLogo}</div>
+                  <img
+                    className=""
+                    src={val.clubLogo}
+                    alt={val.clubName + " logo"}
+                  />
                   {val.clubAcronym.length >= 3 ? val.clubAcronym : val.clubName}
                 </Link>
               </div>
