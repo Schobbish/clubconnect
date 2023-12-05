@@ -34,7 +34,8 @@ export const searchClubs = rest.get(
           .includes(true)
       );
     }
-    // only do basic sort if no query
+
+    // only do basic sort if no query since otherwise no matches
     if (query.length) {
       // calculate ratings of remaining clubs
       const clubRatings: { [key: string]: readonly number[] } = {};
@@ -124,14 +125,19 @@ export const searchClubs = rest.get(
  * An occurence in `clubName` or the description only counts if it is preceeded
  *     by a non-word character or the start of the string (note that what comes
  *     after doesn't matter).
+ *
+ * `[0, 0, Infinity, 0, Infinity]` is the default if `clubName` is not a valid
+ *     club or hopefully for degenerate queries.
  */
 function rateResult(clubName: string, query: string): readonly number[] {
   if (clubName in clubJson && query.length) {
     // check acronym
     const clubAcronym = clubJson[clubName].acronym.toLowerCase();
     let acronymMatches = false;
-    for (const word of query.split(" ")) {
-      if (word.toLowerCase() === clubAcronym) acronymMatches = true;
+    if (clubAcronym.length) {
+      for (const word of query.split(" ")) {
+        if (word.toLowerCase() === clubAcronym) acronymMatches = true;
+      }
     }
 
     return [acronymMatches ? 1 : 0].concat(
@@ -148,20 +154,23 @@ function rateResult(clubName: string, query: string): readonly number[] {
  * @param target The string to search in.
  * @param query The query that's being run.
  * @returns A pair of numbers: first the number of matches
- *     and second the index of the first match.
+ *     and second the index of the first match. `[0, Infinity]` is hopefully
+ *     returned for degenerate queries.
  */
 function findMatchesAndIndex(target: string, query: string): readonly number[] {
   let numMatches = 0;
   let firstIndex = Infinity;
 
   for (const word of query.split(" ")) {
-    const wordRegEx = new RegExp(`(^|\\W)${escapeRegExp(word)}`, "ig");
+    if (word.length) {
+      const wordRegEx = new RegExp(`(^|\\W)${escapeRegExp(word)}`, "ig");
 
-    let match = wordRegEx.exec(target);
-    while (match) {
-      numMatches++;
-      firstIndex = Math.min(firstIndex, match.index);
-      match = wordRegEx.exec(target);
+      let match = wordRegEx.exec(target);
+      while (match) {
+        numMatches++;
+        firstIndex = Math.min(firstIndex, match.index);
+        match = wordRegEx.exec(target);
+      }
     }
   }
 
