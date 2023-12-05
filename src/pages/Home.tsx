@@ -14,9 +14,7 @@ export function Home() {
     apiAxios
       .get("/api/searchClubs", {
         params: {
-          categories: categoryFilter.enabled
-            ? categoryFilter.filter.join(",")
-            : "",
+          categories: categoryFilter.join(","),
           shuffle: true,
           limit: 8
         }

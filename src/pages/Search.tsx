@@ -19,9 +19,7 @@ export function Search() {
       .get("/api/searchClubs", {
         params: {
           q: query,
-          categories: categoryFilter.enabled
-            ? categoryFilter.filter.join(",")
-            : ""
+          categories: categoryFilter.join(",")
         }
       })
       .then((res) => {

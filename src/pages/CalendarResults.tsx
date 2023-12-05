@@ -20,9 +20,7 @@ export function CalendarResults() {
         scheduleFilter.enabled ? scheduleFilter.filter : {},
         {
           params: {
-            categories: categoryFilter.enabled
-              ? categoryFilter.filter.join(",")
-              : ""
+            categories: categoryFilter.join(",")
           }
         }
       )

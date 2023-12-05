@@ -7,7 +7,7 @@ import { ScheduleFilter } from "./ScheduleDialog";
 export type AllClubsDialogProps = Omit<DialogProps, "className" | "children">;
 
 export function AllClubsDialog(props: AllClubsDialogProps) {
-  const [categoryFilter, setCategoryFilter] = useContext(CategoryFilter);
+  const [, setCategoryFilter] = useContext(CategoryFilter);
   const [scheduleFilter, setScheduleFilter] = useContext(ScheduleFilter);
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export function AllClubsDialog(props: AllClubsDialogProps) {
         className="button-primary mr-2"
         type="button"
         onClick={() => {
-          setCategoryFilter({ ...categoryFilter, enabled: false });
+          setCategoryFilter([]);
           setScheduleFilter({ ...scheduleFilter, enabled: false });
           navigate("/search");
           props.onClose();

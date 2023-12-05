@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
-import {
-  CategoryFilter,
-  intiialCategoryFilterValue
-} from "./components/CategoryDialog";
+import { CategoryFilter } from "./components/CategoryDialog";
 import {
   ScheduleFilter,
   initalScheduleFilterValue
@@ -14,9 +11,7 @@ import { DisableableFilter } from "./models/misc";
 
 export function App() {
   const viewStyleState = useState("grid");
-  const categoryFilterState = useState<DisableableFilter<string[]>>(
-    intiialCategoryFilterValue
-  );
+  const categoryFilterState = useState<string[]>([]);
   const scheduleFilterState = useState<DisableableFilter<MeetingSchedule>>(
     initalScheduleFilterValue
   );

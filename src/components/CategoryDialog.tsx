@@ -1,17 +1,17 @@
 import { Field, Form, Formik } from "formik";
 import { noop } from "lodash-es";
 import { createContext, useContext, useEffect, useState } from "react";
-import { DisableableFilter, ReactState } from "../models/misc";
+import { ReactState } from "../models/misc";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
 
-export const intiialCategoryFilterValue = {
-  enabled: true,
+export const initialCategoryFilterValue = {
   filter: []
 };
-export const CategoryFilter = createContext<
-  ReactState<DisableableFilter<string[]>>
->([intiialCategoryFilterValue, noop]);
+export const CategoryFilter = createContext<ReactState<string[]>>([
+  initialCategoryFilterValue.filter,
+  noop
+]);
 
 export type CategoryDialogProps = Omit<DialogProps, "className" | "children">;
 
@@ -37,9 +37,9 @@ export function CategoryDialog(props: CategoryDialogProps) {
       {...props}
     >
       <Formik
-        initialValues={categoryFilter}
-        onSubmit={(values: DisableableFilter<string[]>) => {
-          setCategoryFilter(values);
+        initialValues={{ filter: categoryFilter }}
+        onSubmit={(values) => {
+          setCategoryFilter(values.filter);
           props.onClose();
         }}
       >
@@ -71,16 +71,12 @@ export function CategoryDialog(props: CategoryDialogProps) {
                   className="button-secondary"
                   type="button"
                   onClick={() => {
-                    setCategoryFilter(intiialCategoryFilterValue);
+                    setCategoryFilter([]);
                     props.onClose();
                   }}
                 >
                   Clear Filter
                 </button>
-                <label>
-                  <Field className="ml-4 mr-1" type="checkbox" name="enabled" />
-                  Enabled
-                </label>
               </>
             )}
           </Form>
