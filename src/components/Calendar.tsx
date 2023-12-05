@@ -18,8 +18,6 @@ function sortMeetingSchedules(props: CalendarProps) {
 
 /* Gets all events within the meeting.tsx file */
 function getAllEvents(props: CalendarProps) {
-  console.log(props.meetingSchedule);
-
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
       {weekOrder.map((dayOfWeek) => (
