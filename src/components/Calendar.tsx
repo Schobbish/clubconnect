@@ -7,15 +7,6 @@ interface CalendarProps {
   clubName?: string;
 }
 
-//This is here as the name entials, to avoid jumping through too many hoops to get the acronym from the club json (thought it was easier to do it this way)
-//Does not work as fully intended with clubs that have UT Dallas or UTD in the name or special characters
-function convertToAcronynm(clubName: string) {
-  return clubName
-    .split(/\s/)
-    .reduce((response, word) => (response += word.slice(0, 1)), "")
-    .replace(/[^A-Z]/g, "");
-}
-
 function sortMeetingSchedules(props: CalendarProps) {
   //Sorts the meeting schedule
   weekOrder.map((dayOfWeek) =>
@@ -25,6 +16,7 @@ function sortMeetingSchedules(props: CalendarProps) {
   );
 }
 
+/* Gets all events within the meeting.tsx file */
 function getAllEvents(props: CalendarProps) {
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
@@ -40,9 +32,8 @@ function getAllEvents(props: CalendarProps) {
                 <Link
                   to={"/club?" + createSearchParams({ name: val.clubName })}
                 >
-                  {convertToAcronynm(val.clubName).length >= 3
-                    ? convertToAcronynm(val.clubName)
-                    : val.clubName}
+                  <div>{val.clubLogo}</div>
+                  {val.clubAcronym.length >= 3 ? val.clubAcronym : val.clubName}
                 </Link>
               </div>
               <div>Start: {convert24HourTime(val.startTime)} </div>
@@ -55,6 +46,7 @@ function getAllEvents(props: CalendarProps) {
   );
 }
 
+/* Returns events of a specific club */
 function getClubEvents(props: CalendarProps, clubName: string) {
   return (
     <div className="calendar-events grid grid-cols-7 divide-x">
