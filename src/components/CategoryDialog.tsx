@@ -5,13 +5,7 @@ import { ReactState } from "../models/misc";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
 
-export const initialCategoryFilterValue = {
-  filter: []
-};
-export const CategoryFilter = createContext<ReactState<string[]>>([
-  initialCategoryFilterValue.filter,
-  noop
-]);
+export const CategoryFilter = createContext<ReactState<string[]>>([[], noop]);
 
 export type CategoryDialogProps = Omit<DialogProps, "className" | "children">;
 
