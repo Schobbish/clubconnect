@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash-es";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AllClubsDialog } from "./AllClubsDialog";
@@ -14,15 +15,13 @@ export function Sidebar(props: SidebarProps) {
   const [showCategoryDialog, setShowCategoryDialog] = useState(false);
   const [showScheduleDialog, setShowScheduleDialog] = useState(false);
   const navigate = useNavigate();
-  const categroyFilter = useContext(CategoryFilter);
-  const scheduleFilter = useContext(ScheduleFilter);
-
-  console.log(Object.keys(scheduleFilter[0].filter).length);
+  const categoryFilter = useContext(CategoryFilter)[0];
+  const scheduleFilter = useContext(ScheduleFilter)[0];
 
   function allClub() {
     if (
-      categroyFilter[0].length > 0 ||
-      Object.keys(scheduleFilter[0].filter).length > 0
+      categoryFilter.length > 0 ||
+      (!isEmpty(scheduleFilter.filter) && scheduleFilter.enabled)
     ) {
       setShowClearFiltersDialog(!showClearFiltersDialog);
     } else {
