@@ -11,7 +11,6 @@ import { clubJson } from "../clubJson";
 import { meetings } from "../meetings";
 
 function addClubInfoToMeeting(meeting: Meeting): ExtendedMeeting {
-  console.log(meeting.clubName in clubJson);
   if (meeting.clubName in clubJson) {
     return {
       ...meeting,
