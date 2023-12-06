@@ -229,15 +229,15 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
               className="button-secondary"
               type="button"
               onClick={() => {
+                form.setValues(contextToFormValues(initalScheduleFilterValue));
                 setScheduleFilter(initalScheduleFilterValue);
-                props.onClose();
               }}
             >
               Clear Filter
             </button>
             <label>
               <Field className="ml-4 mr-1" type="checkbox" name="enabled" />
-              Enabled
+              Enable Filter
             </label>
           </Form>
         )}

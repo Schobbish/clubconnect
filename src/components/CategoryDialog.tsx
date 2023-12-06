@@ -37,7 +37,7 @@ export function CategoryDialog(props: CategoryDialogProps) {
           props.onClose();
         }}
       >
-        {() => (
+        {(form) => (
           <Form>
             <h3>Categories</h3>
             <p className="mb-1">Select categories you would like to see</p>
@@ -65,8 +65,8 @@ export function CategoryDialog(props: CategoryDialogProps) {
                   className="button-secondary"
                   type="button"
                   onClick={() => {
+                    form.setValues({ filter: [] });
                     setCategoryFilter([]);
-                    props.onClose();
                   }}
                 >
                   Clear Filter
