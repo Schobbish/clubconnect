@@ -56,7 +56,7 @@ export function NavBar() {
                   className="p-1 w-52"
                   id="query"
                   name="query"
-                  placeholder="Search"
+                  placeholder="Enter the name to search"
                   as={SearchBox}
                 />
                 <button type="submit">
