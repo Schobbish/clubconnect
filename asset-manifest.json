@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/clubconnect/static/css/main.8784bf26.css",
-    "main.js": "/clubconnect/static/js/main.bc2abecd.js",
+    "main.css": "/clubconnect/static/css/main.759db897.css",
+    "main.js": "/clubconnect/static/js/main.419a7a2f.js",
     "static/js/788.52dbf8d4.chunk.js": "/clubconnect/static/js/788.52dbf8d4.chunk.js",
     "static/js/787.fa3c4679.chunk.js": "/clubconnect/static/js/787.fa3c4679.chunk.js",
     "static/js/696.a8c9088e.chunk.js": "/clubconnect/static/js/696.a8c9088e.chunk.js",
@@ -14,16 +14,17 @@
     "static/media/linkedin.svg": "/clubconnect/static/media/linkedin.2eda7bddaacee15c44494bb63ca94165.svg",
     "static/media/grid.svg": "/clubconnect/static/media/grid.9245de468cffe23d05c23ab30976e893.svg",
     "static/media/facebook.svg": "/clubconnect/static/media/facebook.4d4460260f64103d8da4a91d8e856d36.svg",
+    "static/media/close.svg": "/clubconnect/static/media/close.11cc71335420025cd34ce2c178110439.svg",
     "static/media/remove.svg": "/clubconnect/static/media/remove.9601e08804db5fb354e109b79063bc6b.svg",
     "static/media/add.svg": "/clubconnect/static/media/add.c38f7325232c93fdd5ae02ff33971998.svg",
-    "main.8784bf26.css.map": "/clubconnect/static/css/main.8784bf26.css.map",
-    "main.bc2abecd.js.map": "/clubconnect/static/js/main.bc2abecd.js.map",
+    "main.759db897.css.map": "/clubconnect/static/css/main.759db897.css.map",
+    "main.419a7a2f.js.map": "/clubconnect/static/js/main.419a7a2f.js.map",
     "788.52dbf8d4.chunk.js.map": "/clubconnect/static/js/788.52dbf8d4.chunk.js.map",
     "787.fa3c4679.chunk.js.map": "/clubconnect/static/js/787.fa3c4679.chunk.js.map",
     "696.a8c9088e.chunk.js.map": "/clubconnect/static/js/696.a8c9088e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8784bf26.css",
-    "static/js/main.bc2abecd.js"
+    "static/css/main.759db897.css",
+    "static/js/main.419a7a2f.js"
   ]
 }
