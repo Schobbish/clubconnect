@@ -237,7 +237,7 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
             >
               View Events
             </button>
-            <button
+            {/* <button
               className="button-secondary"
               type="button"
               onClick={() => {
@@ -246,9 +246,9 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
               }}
             >
               Clear Filter
-            </button>
+            </button> */}
             <label>
-              <Field className="ml-4 mr-1" type="checkbox" name="enabled" />
+              <Field className="mx-1" type="checkbox" name="enabled" />
               Enable Filter
             </label>
           </Form>
