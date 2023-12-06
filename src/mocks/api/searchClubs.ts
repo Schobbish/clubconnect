@@ -71,7 +71,7 @@ export const searchClubs = rest.get(
     }
 
     if (clubNames.length === 0) {
-      let errorMessage = `No clubs found for query "${query}"`;
+      let errorMessage = `No clubs found for query "${query}" (the club's name might be wrong or this club is not on the website)`;
       errorMessage += humanArrayJoiner(
         categories,
         "or",
