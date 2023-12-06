@@ -66,7 +66,8 @@ export const searchMeetings = rest.post(
           for (const day of weekOrder) {
             schedule[day] = [];
             for (const meeting of defaultTo(meetings[day], [])) {
-              schedule[day]?.push(addClubInfoToMeeting(meeting));
+              if (allowedClubNames.includes(meeting.clubName))
+                schedule[day]?.push(addClubInfoToMeeting(meeting));
             }
           }
         } else {
