@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { noop } from "lodash-es";
 import { createContext, useContext, useEffect, useState } from "react";
+import closeIcon from "../images/close.svg";
 import { ReactState } from "../models/misc";
 import { apiAxios, getErrorMessage } from "../util/api";
 import { Dialog, DialogProps } from "./Dialog";
@@ -39,8 +40,23 @@ export function CategoryDialog(props: CategoryDialogProps) {
       >
         {(form) => (
           <Form>
-            <h3>Categories</h3>
-            <p className="mb-1">Select categories you would like to see</p>
+            <div className="flex">
+              <div>
+                <h3>Categories</h3>
+                <p className="mb-1">Select categories you would like to see</p>
+              </div>
+              <button
+                className="ml-auto place-self-start"
+                type="button"
+                onClick={props.onClose}
+              >
+                <img
+                  className="m-2 min-w-[18px] min-h-[18px]"
+                  src={closeIcon}
+                  alt="Close icon"
+                />
+              </button>
+            </div>
             {errorMessage ? (
               <span className="api-error">{errorMessage}</span>
             ) : (

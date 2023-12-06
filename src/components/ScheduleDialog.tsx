@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import addIcon from "../images/add.svg";
+import closeIcon from "../images/close.svg";
 import removeIcon from "../images/remove.svg";
 import { DayOfWeek, MeetingSchedule, weekOrder } from "../models/meetingTypes";
 import { DisableableFilter, ReactState } from "../models/misc";
@@ -128,8 +129,23 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
       >
         {(form) => (
           <Form>
-            <h3>Schedule</h3>
-            <p className="mb-1">Enter times you are available</p>
+            <div className="flex">
+              <div>
+                <h3>Schedule</h3>
+                <p className="mb-1">Enter times you are available</p>
+              </div>
+              <button
+                className="ml-auto place-self-start"
+                type="button"
+                onClick={props.onClose}
+              >
+                <img
+                  className="m-2 min-w-[18px] min-h-[18px]"
+                  src={closeIcon}
+                  alt="Close icon"
+                />
+              </button>
+            </div>
             <FieldArray name="schedule">
               {(fieldArray) => (
                 <div
