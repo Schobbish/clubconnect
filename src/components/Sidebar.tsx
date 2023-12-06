@@ -62,7 +62,7 @@ export function Sidebar(props: SidebarProps) {
             open={showClearFiltersDialog}
             onClose={() => setShowClearFiltersDialog(false)}
           />
-          <p className="mb-1 font-normal text-base">Filter by:</p>
+          <p className="mb-1 font-bold text-base" style={{ fontSize: '24px' }}>Filter by:</p>
           <button
             className="mb-3 underline block"
             onClick={() => setShowCategoryDialog(!showCategoryDialog)}
