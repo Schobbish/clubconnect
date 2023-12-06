@@ -113,16 +113,18 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
   const [scheduleFilter, setScheduleFilter] = useContext(ScheduleFilter);
   const navigate = useNavigate();
 
+  const handleSubmit = (values: ScheduleFormValues) => {
+    setScheduleFilter(formValuesToContext(values));
+    navigate("/calendar");
+    props.onClose();
+  };
+
   return (
     <Dialog className="schedule-dialog p-2 bg-gray border-2" {...props}>
       <Formik
         initialValues={contextToFormValues(scheduleFilter)}
         validationSchema={scheduleFormSchema}
-        onSubmit={(values: ScheduleFormValues) => {
-          setScheduleFilter(formValuesToContext(values));
-          navigate("/calendar");
-          props.onClose();
-        }}
+        onSubmit={handleSubmit}
       >
         {(form) => (
           <Form>
@@ -222,7 +224,17 @@ export function ScheduleDialog(props: ScheduleDialogProps) {
                 </div>
               )}
             </FieldArray>
-            <button className="button-primary mr-2" type="submit">
+            <button
+              className="button-primary mr-2"
+              type="submit"
+              onClick={() => {
+                // messy but allows us to override validation to disable filter
+                form.validateForm().then((errors) => {
+                  if (!form.values.enabled && !isEmpty(errors))
+                    handleSubmit(form.values);
+                });
+              }}
+            >
               View Events
             </button>
             <button
